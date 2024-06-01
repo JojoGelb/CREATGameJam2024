@@ -181,7 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6.5
   jumpForce: 100
-  jumpCD: 0
+  jumpCD: 1.5
 --- !u!54 &4038544361082674672
 Rigidbody:
   m_ObjectHideFlags: 0
