@@ -1,9 +1,10 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerWaterShooter: MonoBehaviour
 {
-    public ParticleSystem waterGunParticleSystem;
+    public VisualEffect waterGunParticleSystem;
 
     private void Start()
     {
