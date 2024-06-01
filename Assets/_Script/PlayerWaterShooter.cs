@@ -7,6 +7,8 @@ public class PlayerWaterShooter: MonoBehaviour
 {
     public VisualEffect waterGunParticleSystem;
 
+    List<OilPipeGameplay> oilPipeGameplays = new List<OilPipeGameplay>();
+
     private void Start()
     {
         waterGunParticleSystem.Stop();
@@ -35,9 +37,9 @@ public class PlayerWaterShooter: MonoBehaviour
         {
             oil.WaterGunDisabled();
         }
-    }
 
-    List<OilPipeGameplay> oilPipeGameplays = new List<OilPipeGameplay>();
+        oilPipeGameplays.Clear();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
