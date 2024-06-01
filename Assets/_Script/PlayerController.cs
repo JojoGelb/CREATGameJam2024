@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,17 +20,27 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        InputManager.Instance.RegisterToJumpEvent(OnJumpPressed);
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance?.UnRegisterToJumpEvent(OnJumpPressed);
+    }
+
+    private void OnJumpPressed(InputAction.CallbackContext context)
+    {
+        if (jumpTimer < jumpCD) return;
+
+        jumpTimer = 0;
+        rb.AddForce(transform.up * jumpForce);
     }
 
     private void Update()
     {
-        moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+        Vector2 moveInput = InputManager.Instance.GetMovementVectorNormalized();
+        moveDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
         jumpTimer += Time.deltaTime;
-        if(Input.GetKeyDown(KeyCode.Space) && jumpTimer > jumpCD)
-        {
-            jumpTimer = 0;
-            rb.AddForce(transform.up * jumpForce);
-        }
     }
 
     void FixedUpdate()

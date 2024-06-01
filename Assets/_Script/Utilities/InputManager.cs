@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 //Author: Jordy Gelb
 public class InputManager : Singleton<InputManager>
 {
-    //private PlayerControls playerInputAction;
+    private PlayerControls playerInputAction;
 
     public static event Action<InputActionMap> actionMapChange;
 
@@ -15,41 +15,51 @@ public class InputManager : Singleton<InputManager>
     protected override void Awake()
     {
         base.Awake();
-        //playerInputAction = new PlayerControls();
-        //playerInputAction.Enable();
+        playerInputAction = new PlayerControls();
+        playerInputAction.Enable();
     }
 
     private void OnDestroy()
     {
-        //playerInputAction.Dispose();
-        //playerInputAction = null;
+        playerInputAction.Dispose();
+        playerInputAction = null;
 
     }
 
     public void DisableGameplayInput()
     {
-        //playerInputAction.Gameplay.Disable();
+        playerInputAction.Gameplay.Disable();
     }
 
     public void EnableGameplayInput()
     {
-        //playerInputAction.Gameplay.Enable();
+        playerInputAction.Gameplay.Enable();
     }
 
-    /*public Vector2 GetMovementVectorNormalized()
+    public Vector2 GetMovementVectorNormalized()
     {
-        //Vector2 inputVector = playerInputAction.Gameplay.Move.ReadValue<Vector2>();
+        Vector2 inputVector = playerInputAction.Gameplay.Move.ReadValue<Vector2>();
 
         return inputVector.normalized;
-    }*/
+    }
 
     public void RegisterToFireEvent(Action<InputAction.CallbackContext> callback)
     {
-        //playerInputAction.Gameplay.Fire.started += callback;
+        playerInputAction.Gameplay.Fire.started += callback;
     }
 
     public void UnRegisterToFireEvent(Action<InputAction.CallbackContext> callback)
     {
-        //playerInputAction.Gameplay.Fire.started -= callback;
+        playerInputAction.Gameplay.Fire.started -= callback;
+    }
+
+    public void RegisterToJumpEvent(Action<InputAction.CallbackContext> callback)
+    {
+        playerInputAction.Gameplay.Jump.started += callback;
+    }
+
+    public void UnRegisterToJumpEvent(Action<InputAction.CallbackContext> callback)
+    {
+        playerInputAction.Gameplay.Jump.started -= callback;
     }
 }
