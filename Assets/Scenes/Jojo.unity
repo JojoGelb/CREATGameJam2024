@@ -123,6 +123,87 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &285100494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 285100495}
+  - component: {fileID: 285100496}
+  - component: {fileID: 285100497}
+  m_Layer: 6
+  m_Name: WaterGunCollider
+  m_TagString: WaterGun
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &285100495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285100494}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1029219740}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &285100496
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285100494}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.4824963, y: 5.6775, z: 12.360388}
+  m_Center: {x: 0.08097336, y: -1.9660068, z: 7.218235}
+--- !u!54 &285100497
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285100494}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &519805575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -318,6 +399,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1029219740 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1804414061683382673, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+  m_PrefabInstance: {fileID: 7515226172185255998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &520712716089184044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -451,13 +537,28 @@ PrefabInstance:
       propertyPath: jumpCD
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1678711606668531500, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      propertyPath: m_TagString
+      value: WaterGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038544361082674672, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5768977114072674001, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7341952583792936475, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      propertyPath: CollisionModule.collisionMessages
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1804414061683382673, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 285100495}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
 --- !u!1660057539 &9223372036854775807
