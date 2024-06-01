@@ -29,15 +29,29 @@ public class OilPipeGameplay : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            isBeingWatered = false;
         }
     }
 
-    private void OnParticleCollision(GameObject other)
+    private void OnTriggerEnter(Collider other)
+    {
+        isBeingWatered=true;
+    }
+
+    public void WaterGunDisabled()
+    {
+        isBeingWatered = false;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        isBeingWatered=false;
+    }
+
+    /*private void OnParticleCollision(GameObject other)
     {
         if(other.tag == "WaterGun")
         {
             isBeingWatered = true;
         }
-    }
+    }*/
 }

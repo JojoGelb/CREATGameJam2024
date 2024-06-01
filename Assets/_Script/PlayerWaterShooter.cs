@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -22,13 +23,26 @@ public class PlayerWaterShooter: MonoBehaviour
     {
         //Launch water
         waterGunParticleSystem.Play();
+        waterGunParticleSystem.GetComponent<Collider>().enabled = true;
     }
 
     private void OnFireCanceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         //Stop water
         waterGunParticleSystem.Stop();
+        waterGunParticleSystem.GetComponent<Collider>().enabled = false;
+        foreach(OilPipeGameplay oil in oilPipeGameplays)
+        {
+            oil.WaterGunDisabled();
+        }
     }
 
+    List<OilPipeGameplay> oilPipeGameplays = new List<OilPipeGameplay>();
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent(out OilPipeGameplay oil)) {
+            oilPipeGameplays.Add(oil);
+        }
+    }
 }
