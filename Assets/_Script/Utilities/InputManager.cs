@@ -43,12 +43,22 @@ public class InputManager : Singleton<InputManager>
         return inputVector.normalized;
     }
 
-    public void RegisterToFireEvent(Action<InputAction.CallbackContext> callback)
+    public void RegisterToFireEventStarted(Action<InputAction.CallbackContext> callback)
     {
         playerInputAction.Gameplay.Fire.started += callback;
     }
 
-    public void UnRegisterToFireEvent(Action<InputAction.CallbackContext> callback)
+    public void RegisterToFireEventCanceled(Action<InputAction.CallbackContext> callback)
+    {
+        playerInputAction.Gameplay.Fire.canceled += callback;
+    }
+
+    public void UnRegisterToFireEventCanceled(Action<InputAction.CallbackContext> callback)
+    {
+        playerInputAction.Gameplay.Fire.canceled -= callback;
+    }
+
+    public void UnRegisterToFireEventStarted(Action<InputAction.CallbackContext> callback)
     {
         playerInputAction.Gameplay.Fire.started -= callback;
     }
