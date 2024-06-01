@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 1020506519072118147}
   - component: {fileID: 4727732269922336078}
   - component: {fileID: 6568651243129654613}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5c4a57cbb44446a2579c456adb1fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6.5
+  moveSpeed: 4
   jumpForce: 100
   jumpCD: 1.5
 --- !u!114 &4727732269922336078
@@ -235,6 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc59b5bcb2322a94f9ea20ff05656cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterGunParticleSystem: {fileID: 0}
+  follow: {fileID: 0}
 --- !u!1001 &6648234605684774003
 PrefabInstance:
   m_ObjectHideFlags: 0
