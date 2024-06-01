@@ -7,6 +7,8 @@ public class FauxGravityBody : MonoBehaviour
     private FauxGravityAttractor attractor;
     private Rigidbody rb;
 
+    public float distanceToSurface = 0.2f;
+
     public bool placeOnSurface = false;
 
     void Start()
@@ -15,14 +17,14 @@ public class FauxGravityBody : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         rb.useGravity = false;
         attractor = FauxGravityAttractor.instance;
+
+        if (placeOnSurface)
+            attractor.PlaceOnSurface(rb,distanceToSurface);
     }
 
     void FixedUpdate()
     {
-        if (placeOnSurface)
-            attractor.PlaceOnSurface(rb);
-        else
-            attractor.Attract(rb);
+        attractor.Attract(rb);
     }
 
 }

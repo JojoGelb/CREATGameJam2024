@@ -27,11 +27,13 @@ public class FauxGravityAttractor : MonoBehaviour
         //RotateBody(body);
     }
 
-    public void PlaceOnSurface(Rigidbody body)
+    public void PlaceOnSurface(Rigidbody body, float distanceToSurface)
     {
         body.MovePosition((body.position - transform.position).normalized * (transform.localScale.x * col.radius));
 
         RotateBody(body);
+
+        body.transform.localPosition += new Vector3(0, distanceToSurface, 0);
     }
 
     void RotateBody(Rigidbody body)
