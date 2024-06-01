@@ -8,13 +8,13 @@ public class Rocket : MonoBehaviour
     public GameObject OilPipePrefab;
 
     Rigidbody rb;
-    Collider collider;
+    Collider colliderComponent;
 
     public bool started = false;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        collider = rb.GetComponent<Collider>();
+        colliderComponent = rb.GetComponent<Collider>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,7 +23,7 @@ public class Rocket : MonoBehaviour
         if(other.GetComponent<FauxGravityAttractor>() != null)
         {
             rb.isKinematic = true;
-            collider.isTrigger = false;
+            colliderComponent.isTrigger = false;
             Instantiate(OilPipePrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
