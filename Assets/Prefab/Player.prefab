@@ -209,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   jumpForce: 100
-  jumpCD: 1.5
+  jumpCD: 1
 --- !u!114 &4727732269922336078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48161032ceee6764986e2d05d2cfbdfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distanceToSurface: 0.2
   placeOnSurface: 0
 --- !u!114 &6568651243129654613
 MonoBehaviour:
@@ -333,9 +334,17 @@ PrefabInstance:
       propertyPath: moveWithCustomTransform
       value: 
       objectReference: {fileID: 1804414061683382673}
+    - target: {fileID: 1578089171061727072, guid: 1c65175d1b68ba4409afacd67d766b76, type: 3}
+      propertyPath: CollisionModule.collisionMessages
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7443990636777606743, guid: 1c65175d1b68ba4409afacd67d766b76, type: 3}
       propertyPath: m_Name
       value: WaterGunVisualEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 7443990636777606743, guid: 1c65175d1b68ba4409afacd67d766b76, type: 3}
+      propertyPath: m_TagString
+      value: WaterGun
       objectReference: {fileID: 0}
     - target: {fileID: 7815051264077449129, guid: 1c65175d1b68ba4409afacd67d766b76, type: 3}
       propertyPath: m_LocalPosition.x

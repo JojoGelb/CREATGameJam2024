@@ -10,6 +10,16 @@ public class OilPipeGameplay : MonoBehaviour
 
     private bool isBeingWatered = false;
 
+    private void Awake()
+    {
+        OilPipeManager.Instance?.AddOilPipe(this);
+    }
+
+    private void OnDestroy()
+    {
+        OilPipeManager.Instance?.RemoveOilPipe(this);
+    }
+
     private void Update()
     {
         if(isBeingWatered)
@@ -30,34 +40,4 @@ public class OilPipeGameplay : MonoBehaviour
             isBeingWatered = true;
         }
     }
-
-
-    /*private void OnTriggerEnter(Collider collision)
-    {
-        Debug.Log("Enter");
-        if(collision.transform.tag == "WaterGun")
-        {
-            Vector3 direction = transform.position 
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, direction, out hit, distance))
-            {
-                // Check if the hit object is not the target object itself
-                if (hit.transform != targetObject)
-                {
-                    Debug.Log("Obstacle detected between objects: " + hit.transform.name);
-                    // Handle the obstacle detection here
-                }
-            }
-            isBeingWatered =true;
-        }
-    }
-
-    private void OnTriggerExit(Collider collision)
-    {
-        Debug.Log("Exit");
-        if (collision.transform.tag == "WaterGun")
-        {
-            isBeingWatered = false;
-        }
-    }*/
 }
