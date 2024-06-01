@@ -31,7 +31,6 @@ public class Paintable : MonoBehaviour {
         uvIslandsRenderTexture = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0);
         uvIslandsRenderTexture.filterMode = FilterMode.Bilinear;
 
-
         supportTexture = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0);
         supportTexture.filterMode =  FilterMode.Bilinear;
 

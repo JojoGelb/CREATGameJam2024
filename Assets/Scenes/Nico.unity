@@ -378,7 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 358405280}
   mouseSingleClick: 0
-  paintColor: {r: 0.28249678, g: 1, b: 0.08018869, a: 0}
+  paintColor: {r: 0.4392157, g: 1, b: 0.71542245, a: 1}
   radius: 1
   strength: 0.5
   hardness: 0.1
@@ -428,6 +428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texturePaint: {fileID: 4800000, guid: f5dc21d557c249a9974735d3d44795a7, type: 3}
   extendIslands: {fileID: 4800000, guid: 34ca999939ac417f83cdda2a089c9a6e, type: 3}
+  erasePaint: {fileID: 4800000, guid: 9ba306a2ac914330be7d92cd7d41517e, type: 3}
 --- !u!4 &1936747545
 Transform:
   m_ObjectHideFlags: 0
@@ -518,7 +519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 163047561972568386, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 163047561972568386, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
       propertyPath: m_LocalPosition.z

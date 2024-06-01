@@ -7,16 +7,20 @@ public class MousePainter : MonoBehaviour{
     [Space]
     public Color paintColor;
     
-    public float radius = 1;
+    public float radius = .1f;
     public float strength = 1;
     public float hardness = 1;
 
     void Update(){
 
-        bool click;
-        click = mouseSingleClick ? Input.GetMouseButtonDown(0) : Input.GetMouseButton(0);
+        bool leftClick, rightClick = false;
+        leftClick = mouseSingleClick ? Input.GetMouseButtonDown(0) : Input.GetMouseButton(0);
+        if (!leftClick)
+        {
+            rightClick = Input.GetMouseButtonDown(1) || Input.GetMouseButton(1);
+        }
 
-        if (click)
+        if (leftClick || rightClick)
         {
             Vector3 position = Input.mousePosition;
             Ray ray = cam.ScreenPointToRay(position);
@@ -27,7 +31,10 @@ public class MousePainter : MonoBehaviour{
                 transform.position = hit.point;
                 Paintable p = hit.collider.GetComponent<Paintable>();
                 if(p != null){
-                    PaintManager.Instance.paint(p, hit.point, radius, hardness, strength, paintColor);
+                    if(rightClick)
+                        PaintManager.Instance.Paint(p, hit.point, radius, hardness, strength, paintColor);
+                    if(leftClick)
+                        PaintManager.Instance.Erase(p, hit.point, radius);
                 }
             }
         }
