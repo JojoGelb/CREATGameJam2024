@@ -8,8 +8,7 @@ public class SoundManager : Singleton<SoundManager>
     [SerializeField] private AudioMixerGroup _musicMixerGroup;
     [SerializeField] private AudioMixerGroup _sfxMixerGroup;
 
-
-    /*public void PlayMusicAtPosition(Vector3 position, AudioClip clip)
+    public void PlayMusicAtPosition(Vector3 position, AudioClip clip)
     {
         GameObject sound = ObjectPooler.Instance.GetOrCreateGameObjectFromPool(ObjectPooler.PoolObject.Sound);
         sound.transform.position = position;
@@ -19,7 +18,7 @@ public class SoundManager : Singleton<SoundManager>
         audio.clip = clip;
         audio.loop = true;
         audio.Play();
-    }*/
+    }
 
     public void PlayVFXAtPosition(Vector3 position, AudioClip clip, float volume = 1f)
     {
