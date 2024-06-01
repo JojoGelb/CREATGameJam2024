@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48161032ceee6764986e2d05d2cfbdfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distanceToSurface: 0.2
   placeOnSurface: 0
 --- !u!114 &5657252926504724122
 MonoBehaviour:
@@ -109,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 550aa5dc7bbbf414f9d89a91fbc28856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OilPipePrefab: {fileID: 8325889492784263082, guid: 08d4b89c7bfc1c949ac514cb955c45ae, type: 3}
 --- !u!1001 &1878982314078915755
 PrefabInstance:
   m_ObjectHideFlags: 0

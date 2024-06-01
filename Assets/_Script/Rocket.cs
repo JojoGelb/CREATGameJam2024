@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
+
+    public GameObject OilPipePrefab;
+
     Rigidbody rb;
     Collider collider;
+
+    public bool started = false;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -14,10 +19,13 @@ public class Rocket : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!started) return;
         if(other.GetComponent<FauxGravityAttractor>() != null)
         {
             rb.isKinematic = true;
             collider.isTrigger = false;
+            Instantiate(OilPipePrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }
