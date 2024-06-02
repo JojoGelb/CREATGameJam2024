@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public float jumpCD = 0;
     private float jumpTimer = 10000;
 
+    public float rotationSpeed;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -48,7 +50,11 @@ public class PlayerController : MonoBehaviour
         if(moveDir != Vector3.zero)
         {
             float angle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
-            transform.GetChild(0).localRotation = Quaternion.Euler(0, angle, 0);
+            float initialAngle = transform.GetChild(0).localRotation.eulerAngles.y;
+
+            float newRotation = Mathf.MoveTowardsAngle(initialAngle, angle, rotationSpeed*Time.fixedDeltaTime);
+
+            transform.GetChild(0).localRotation = Quaternion.Euler(0, newRotation, 0);
         }
         rb.MovePosition(rb.position + transform.TransformDirection(moveDir) * moveSpeed * Time.fixedDeltaTime);
     }
