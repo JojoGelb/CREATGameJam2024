@@ -7,11 +7,7 @@ public class ObjectPooler : Singleton<ObjectPooler>
     public enum PoolObject
     {
         Sound = 0,
-        PlayerProjectile = 1,
-        EnemyTriangle = 2,
-        EnemyStar = 3,
-        EnemyOctahedron = 4,
-        EnemyDeathParticleEffect = 20
+        Arrow = 1
     }
 
     [System.Serializable]
