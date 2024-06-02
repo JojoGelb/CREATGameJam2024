@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 07080eb00f694224280f40e0bea0c1a3
+guid: 7c61f398bc6dba84fb14731d80f705de
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Pixelated
+  - Delicious Bold
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
