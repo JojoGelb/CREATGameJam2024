@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class MainMenu : MonoBehaviour
     public string levelToLoad;
     public GameObject settingsWindow;
     public GameObject creditsWindow;
+
+    public Button FirstSelectedMainMenu;
+    public Dropdown FirstSelectedSettings;
 
     public void StartGame()
     {
@@ -21,6 +25,7 @@ public class MainMenu : MonoBehaviour
     public void Settings()
     {
         settingsWindow.SetActive(true);
+        FirstSelectedSettings.Select();
     }
 
     public void Credits()
@@ -36,6 +41,7 @@ public class MainMenu : MonoBehaviour
     public void CloseSettingsWindow()
     {
         settingsWindow.SetActive(false);
+        FirstSelectedMainMenu.Select();
     }
 
     public void QuitGame()
