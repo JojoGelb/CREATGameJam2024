@@ -12,10 +12,12 @@ public class OilPipeGameplay : MonoBehaviour
     private bool isBeingWatered = false;
 
     public VisualEffect Explosion;
+    public VisualEffect Watered;
 
     private void Awake()
     {
         OilPipeManager.Instance?.AddOilPipe(this);
+        Watered.Stop();
     }
 
     private void OnDestroy()
@@ -49,16 +51,19 @@ public class OilPipeGameplay : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         isBeingWatered=true;
+        Watered.Play();
     }
 
     public void WaterGunDisabled()
     {
         isBeingWatered = false;
+        Watered.Stop();
     }
 
     private void OnTriggerExit(Collider other)
     {
         isBeingWatered=false;
+        Watered.Stop();
     }
 
     /*private void OnParticleCollision(GameObject other)
