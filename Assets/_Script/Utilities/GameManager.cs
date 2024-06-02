@@ -48,6 +48,7 @@ public class GameManager : Singleton<GameManager>
                 Time.timeScale = 1;
                 break;
             case GameState.Finishing:
+                InputManager.Instance.DisableGameplayInput();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -59,6 +60,13 @@ public class GameManager : Singleton<GameManager>
     {
         //Animation 3-2-1;
         ChangeState(GameState.Playing);
+        Invoke("Stop", 3);
+    }
+
+    private void Stop()
+    {
+        ChangeState(GameState.Finishing);
+        EndGameMenu.Instance.EndGame(false);
     }
 
     public enum GameState {
