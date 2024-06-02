@@ -60,7 +60,6 @@ public class GameManager : Singleton<GameManager>
     {
         //Animation 3-2-1;
         ChangeState(GameState.Playing);
-        Invoke("Stop", 3);
     }
 
     public enum GameState {
