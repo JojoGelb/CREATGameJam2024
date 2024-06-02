@@ -756,6 +756,10 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2078970245185655949, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      propertyPath: Planet
+      value: 
+      objectReference: {fileID: 1167127708}
+    - target: {fileID: 2078970245185655949, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
       propertyPath: EraseFeather
       value: 0.2
       objectReference: {fileID: 0}

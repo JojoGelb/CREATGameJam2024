@@ -27,6 +27,9 @@ public class PlayerWaterShooter : MonoBehaviour
 
     List<OilPipeGameplay> oilPipeGameplays = new List<OilPipeGameplay>();
 
+    public Transform AimDirection;
+    public GameObject Planet;
+
     private void Start()
     {
         baseMovespeed = playerController.moveSpeed;
@@ -41,6 +44,23 @@ public class PlayerWaterShooter : MonoBehaviour
         {
             Vector3 direction = -visualTransform.forward;
             playerRb.AddForce(direction * force, ForceMode.Force);
+
+
+            // Use raycasting to measure distance between nozzle and impact
+            RaycastHit hit;
+            if (Physics.Raycast(AimDirection.position, AimDirection.up, out hit, 25) && hit.collider.gameObject != Planet)
+            {
+                //if (hit.collider.TryGetComponent(out Paintable paintableObject))
+                //{
+                //    PaintManager.Instance.Erase(paintableObject, hit.point, WashingRadius, EraseFeather);
+                //}
+                
+                waterGunParticleSystem.SetFloat("Obstacle distance", hit.distance);
+            }
+            else
+            {
+                waterGunParticleSystem.SetFloat("Obstacle distance", -10f);
+            }
         }
     }
 
