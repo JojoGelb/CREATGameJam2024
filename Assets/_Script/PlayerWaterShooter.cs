@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.VFX;
 
-public class PlayerWaterShooter: MonoBehaviour
+public class PlayerWaterShooter : MonoBehaviour
 {
     public VisualEffect waterGunParticleSystem;
 
     public Rigidbody playerRb;
     public Transform visualTransform;
     public float force = 2;
+    public float WashingRadius;
+    public float DistanceFromPlayer;
+    public float MaxWashingDistance;
+    public float EraseFeather;
 
     [Header("Fooling around with jet knockback")]
     public bool removeMoveSpeedWhenShooting = false;
+
     public PlayerController playerController;
     private float baseMovespeed;
 
@@ -30,7 +37,7 @@ public class PlayerWaterShooter: MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(isShooting)
+        if (isShooting)
         {
             Vector3 direction = -visualTransform.forward;
             playerRb.AddForce(direction * force, ForceMode.Force);
@@ -42,13 +49,14 @@ public class PlayerWaterShooter: MonoBehaviour
         InputManager.Instance?.UnRegisterToFireEventStarted(OnFireStarted);
         InputManager.Instance?.UnRegisterToFireEventCanceled(OnFireCanceled);
     }
+
     private void OnFireStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         //Launch water
         waterGunParticleSystem.Play();
         waterGunParticleSystem.GetComponent<Collider>().enabled = true;
 
-        if(removeMoveSpeedWhenShooting)
+        if (removeMoveSpeedWhenShooting)
             playerController.moveSpeed = 0;
         isShooting = true;
     }
@@ -58,7 +66,7 @@ public class PlayerWaterShooter: MonoBehaviour
         //Stop water
         waterGunParticleSystem.Stop();
         waterGunParticleSystem.GetComponent<Collider>().enabled = false;
-        foreach(OilPipeGameplay oil in oilPipeGameplays)
+        foreach (OilPipeGameplay oil in oilPipeGameplays)
         {
             oil.WaterGunDisabled();
         }
@@ -70,8 +78,24 @@ public class PlayerWaterShooter: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out OilPipeGameplay oil)) {
+        if (other.TryGetComponent(out OilPipeGameplay oil))
+        {
             oilPipeGameplays.Add(oil);
+        }
+    }
+
+    private void OnTriggerStay(Collider collider)
+    {
+        if (collider.TryGetComponent(out Paintable paintableObject))
+        {
+            var collisionPoint = collider.ClosestPoint(visualTransform.position);
+            for (int i = 1; i < 10; i++)
+            {
+                PaintManager.Instance.Erase(paintableObject,
+                    collisionPoint + visualTransform.forward * (DistanceFromPlayer + (i * (MaxWashingDistance / 10))),
+                    WashingRadius,
+                    EraseFeather);
+            }
         }
     }
 }

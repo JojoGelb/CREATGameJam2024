@@ -22,9 +22,9 @@ public class InputManager : Singleton<InputManager>
 
     private void OnDestroy()
     {
+        Debug.Log("Disabled");
         playerInputAction.Dispose();
         playerInputAction = null;
-
     }
 
     public void DisableGameplayInput()
@@ -44,6 +44,7 @@ public class InputManager : Singleton<InputManager>
 
     public Vector2 GetMovementVectorNormalized()
     {
+        if (playerInputAction == null) return Vector2.zero;
         Vector2 inputVector = playerInputAction.Gameplay.Move.ReadValue<Vector2>();
 
         return inputVector.normalized;
@@ -51,31 +52,37 @@ public class InputManager : Singleton<InputManager>
 
     public void RegisterToFireEventStarted(Action<InputAction.CallbackContext> callback)
     {
+        if (playerInputAction == null) return;
         playerInputAction.Gameplay.Fire.started += callback;
     }
 
     public void RegisterToFireEventCanceled(Action<InputAction.CallbackContext> callback)
     {
+        if (playerInputAction == null) return;
         playerInputAction.Gameplay.Fire.canceled += callback;
     }
 
     public void UnRegisterToFireEventCanceled(Action<InputAction.CallbackContext> callback)
     {
+        if (playerInputAction == null) return;
         playerInputAction.Gameplay.Fire.canceled -= callback;
     }
 
     public void UnRegisterToFireEventStarted(Action<InputAction.CallbackContext> callback)
     {
+        if (playerInputAction == null) return;
         playerInputAction.Gameplay.Fire.started -= callback;
     }
 
     public void RegisterToJumpEvent(Action<InputAction.CallbackContext> callback)
     {
+        if (playerInputAction == null) return;
         playerInputAction.Gameplay.Jump.started += callback;
     }
 
     public void UnRegisterToJumpEvent(Action<InputAction.CallbackContext> callback)
     {
+        if (playerInputAction == null) return;
         playerInputAction.Gameplay.Jump.started -= callback;
     }
 }

@@ -48,6 +48,8 @@ public class GameManager : Singleton<GameManager>
                 Time.timeScale = 1;
                 break;
             case GameState.Finishing:
+                InputManager.Instance.DisableGameplayInput();
+                Time.timeScale = 0;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
