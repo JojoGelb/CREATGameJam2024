@@ -21,7 +21,7 @@ public class Paintable : MonoBehaviour {
     public RenderTexture getSupport() => supportTexture;
     public Renderer getRenderer() => rend;
 
-    void Start() {
+    void Awake() {
         maskRenderTexture = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0);
         maskRenderTexture.filterMode = FilterMode.Bilinear;
 
