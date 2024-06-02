@@ -16,14 +16,12 @@ public class GameManager : Singleton<GameManager>
         public GameState state;
     }
 
-    public Transform Player;
-
     public GameState state { get; private set; }
+    private GameState previousState;
 
     private void Start()
     {
         ChangeState(GameState.BeforeStart);
-        /*InputManager.Instance.SubscribeToEscape(InputManager_OnPausePressed);*/
     }
 
     public void ChangeState(GameState newState)
@@ -41,12 +39,13 @@ public class GameManager : Singleton<GameManager>
                 break;
             case GameState.Pause:
                 //Do some pause things
+                //InputManager.Instance.DisableGameplayInput();
                 Time.timeScale = 0;
                 break;
             case GameState.Playing:
                 //Do some start things
+                InputManager.Instance.EnableGameplayInput();
                 Time.timeScale = 1;
-                //Doing things like UnitManager.Instance.SpawnNumbers() in the handler of this event
                 break;
             case GameState.Finishing:
                 break;
@@ -58,6 +57,8 @@ public class GameManager : Singleton<GameManager>
 
     private void HandleBeforeStart()
     {
+        //Animation 3-2-1;
+        ChangeState(GameState.Playing);
     }
 
     public enum GameState {
@@ -68,20 +69,10 @@ public class GameManager : Singleton<GameManager>
         Pause = 4
     }
 
-    /*private void InputManager_OnPausePressed(InputAction.CallbackContext e)
+    public void ResetToPrecedentState()
     {
-        if (state == GameState.Pause)
-        {
-            InputManager.Instance.EnableInput();
-            
-            ChangeState(GameState.Playing);
-            
-        } else
-        {
-            InputManager.Instance.DisableInput();
-            
-            ChangeState(GameState.Pause);
-        }
-        
-    }*/
+        if(previousState == GameState.Playing)
+            InputManager.Instance.EnableGameplayInput();
+        ChangeState(previousState);
+    }
 }

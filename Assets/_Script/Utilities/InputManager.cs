@@ -36,6 +36,11 @@ public class InputManager : Singleton<InputManager>
         playerInputAction.Gameplay.Enable();
     }
 
+    public void RegisterToEscape(Action<InputAction.CallbackContext> callback)
+    {
+        playerInputAction.UI.Pause.started += callback;
+    }
+
     public Vector2 GetMovementVectorNormalized()
     {
         Vector2 inputVector = playerInputAction.Gameplay.Move.ReadValue<Vector2>();
