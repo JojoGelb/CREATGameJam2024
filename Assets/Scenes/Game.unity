@@ -2075,6 +2075,8 @@ MonoBehaviour:
   poolPrefabSetUps:
   - tag: 0
     prefab: {fileID: 4593902472182991401, guid: a27d3ea2874022c43bd6f36584ee6de7, type: 3}
+  - tag: 1
+    prefab: {fileID: 7400674201705258939, guid: 132c0723a20033a49ba36a4ae2706aa3, type: 3}
 --- !u!1 &1154653899
 GameObject:
   m_ObjectHideFlags: 0
