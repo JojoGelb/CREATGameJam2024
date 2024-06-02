@@ -111,6 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OilPipePrefab: {fileID: 8325889492784263082, guid: 08d4b89c7bfc1c949ac514cb955c45ae, type: 3}
+  paintColor: {r: 0.3764706, g: 0, b: 0.3372549, a: 0.70980394}
+  PoisonRadiusOnSpawn: 5
   started: 0
 --- !u!1001 &5433513645505004274
 PrefabInstance:
