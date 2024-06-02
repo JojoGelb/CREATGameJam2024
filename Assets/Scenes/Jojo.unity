@@ -2075,6 +2075,8 @@ MonoBehaviour:
   poolPrefabSetUps:
   - tag: 0
     prefab: {fileID: 4593902472182991401, guid: a27d3ea2874022c43bd6f36584ee6de7, type: 3}
+  - tag: 1
+    prefab: {fileID: 7400674201705258939, guid: 132c0723a20033a49ba36a4ae2706aa3, type: 3}
 --- !u!1 &1154653899
 GameObject:
   m_ObjectHideFlags: 0
@@ -4476,23 +4478,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1289098524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2072621465 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5768977114072674001, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
-  m_PrefabInstance: {fileID: 7515226172185255998}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2072621471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072621465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27feda00156536b40ba2c1f211dc8805, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2080756876
 GameObject:
   m_ObjectHideFlags: 0
@@ -5317,10 +5302,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5768977114072674001, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2072621471}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
 --- !u!222 &7584361301354717345
 CanvasRenderer:

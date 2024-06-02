@@ -22,4 +22,9 @@ public class OilPipeManager : Singleton<OilPipeManager>
         oilPipes.Remove(oilPipe);
         OnOilPipeCountChanged.Invoke(oilPipes.Count);
     }
+
+    public List<OilPipeGameplay> GetOliPipesInGame()
+    {
+        return oilPipes;
+    }
 }
