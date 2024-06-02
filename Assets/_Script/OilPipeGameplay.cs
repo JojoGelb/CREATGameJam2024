@@ -31,6 +31,7 @@ public class OilPipeGameplay : MonoBehaviour
             if(wateredTime > WateringTimeToDestroy )
             {
                 transform.Find("Visual").gameObject.SetActive(false);
+                transform.Find("RocketLandingEffect").GetComponent<VisualEffect>().SetBool("SubExplosion", true);
                 Explosion.enabled = true;
                 GetComponent<BoxCollider>().enabled = false;
                 DestroyAfterTime(20f);

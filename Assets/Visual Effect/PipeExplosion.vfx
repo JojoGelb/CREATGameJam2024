@@ -680,7 +680,7 @@ MonoBehaviour:
   useAlphaClipping: 0
   generateMotionVector: 0
   excludeFromTAA: 0
-  sortingPriority: 0
+  sortingPriority: 1
   m_SubOutputs: []
   colorMapping: 0
   uvMode: 0
@@ -2855,7 +2855,7 @@ MonoBehaviour:
   useAlphaClipping: 0
   generateMotionVector: 0
   excludeFromTAA: 0
-  sortingPriority: 0
+  sortingPriority: 1
   m_SubOutputs: []
   colorMapping: 0
   uvMode: 0
@@ -5242,7 +5242,7 @@ MonoBehaviour:
   useAlphaClipping: 0
   generateMotionVector: 0
   excludeFromTAA: 0
-  sortingPriority: 0
+  sortingPriority: 1
   m_SubOutputs: []
   colorMapping: 0
   uvMode: 0
@@ -7305,7 +7305,7 @@ MonoBehaviour:
   useAlphaClipping: 0
   generateMotionVector: 0
   excludeFromTAA: 0
-  sortingPriority: 0
+  sortingPriority: 1
   m_SubOutputs: []
   colorMapping: 0
   uvMode: 0
