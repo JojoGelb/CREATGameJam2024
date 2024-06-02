@@ -36,6 +36,7 @@ public class OilPipeGameplay : MonoBehaviour
                 transform.Find("RocketLandingEffect").GetComponent<VisualEffect>().SetBool("SubExplosion", true);
                 Explosion.enabled = true;
                 GetComponent<BoxCollider>().enabled = false;
+                Watered.Stop();
                 DestroyAfterTime(20f);
                 OilPipeManager.Instance?.RemoveOilPipe(this);
             }
