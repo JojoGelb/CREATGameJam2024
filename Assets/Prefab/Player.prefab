@@ -110,6 +110,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterGunParticleSystem: {fileID: 9131806140207758668}
+  playerRb: {fileID: 4038544361082674672}
+  visualTransform: {fileID: 1804414061683382673}
+  force: 3
+  removeMoveSpeedWhenShooting: 0
+  playerController: {fileID: 1020506519072118147}
 --- !u!73398921 &4219346425270804424
 VFXRenderer:
   serializedVersion: 1
