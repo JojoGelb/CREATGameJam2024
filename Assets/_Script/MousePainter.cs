@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class MousePainter : MonoBehaviour{
-    public Camera cam;
+    private Camera cam;
     [Space]
     public bool mouseSingleClick;
     [Space]
@@ -13,6 +13,11 @@ public class MousePainter : MonoBehaviour{
     public float radius = .1f;
     public float strength = 1;
     public float hardness = 1;
+
+    private void Start()
+    {
+        cam = Camera.main;
+    }
 
     void Update(){
 

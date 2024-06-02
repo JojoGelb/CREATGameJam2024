@@ -67,9 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e183c94360433b9bbaf0625c452e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
   mouseSingleClick: 0
-  paintColor: {r: 0.5520134, g: 1, b: 0.07075471, a: 0.70980394}
+  paintColor: {r: 0.3764706, g: 0, b: 0.3372549, a: 0.70980394}
   ActiveRightClick: 1
   ActiveLeftClick: 0
   radius: 5

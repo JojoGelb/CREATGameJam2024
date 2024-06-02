@@ -113,6 +113,10 @@ MonoBehaviour:
   playerRb: {fileID: 4038544361082674672}
   visualTransform: {fileID: 1804414061683382673}
   force: 3
+  WashingRadius: 0.2
+  DistanceFromPlayer: 1.2
+  MaxWashingDistance: 1
+  EraseFeather: 0.2
   removeMoveSpeedWhenShooting: 0
   playerController: {fileID: 1020506519072118147}
 --- !u!73398921 &4219346425270804424
@@ -353,6 +357,7 @@ GameObject:
   - component: {fileID: 1020506519072118147}
   - component: {fileID: 4727732269922336078}
   - component: {fileID: 7475610954289253886}
+  - component: {fileID: 3100725482570379632}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -440,7 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   jumpForce: 100
-  jumpCD: 1
+  jumpCD: 1.5
 --- !u!114 &4727732269922336078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,6 +461,18 @@ MonoBehaviour:
   distanceToSurface: 0.2
   placeOnSurface: 0
 --- !u!114 &7475610954289253886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768977114072674001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27feda00156536b40ba2c1f211dc8805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3100725482570379632
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
