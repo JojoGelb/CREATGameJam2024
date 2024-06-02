@@ -32,6 +32,7 @@ public class OilPipeGameplay : MonoBehaviour
             {
                 transform.Find("Visual").gameObject.SetActive(false);
                 Explosion.enabled = true;
+                GetComponent<BoxCollider>().enabled = false;
                 DestroyAfterTime(20f);
                 OilPipeManager.Instance?.RemoveOilPipe(this);
             }
