@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static GameManager;
 
 public class EndGameMenu : Singleton<EndGameMenu>
 {
@@ -19,7 +20,10 @@ public class EndGameMenu : Singleton<EndGameMenu>
 
     public void EndGame(bool isVictory, string explanation = "")
     {
-        if(isVictory)
+
+        GameManager.Instance.ChangeState(GameState.Finishing);
+
+        if (isVictory)
         {
             TextTitle.text = victoryText;
         }else
@@ -38,8 +42,6 @@ public class EndGameMenu : Singleton<EndGameMenu>
 
         ButtonNewGame.Select();
         ParentRectTransform.SetActive(true);
-
-
     }
 
     public void OnButtonNewGame()

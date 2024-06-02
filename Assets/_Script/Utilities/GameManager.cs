@@ -63,12 +63,6 @@ public class GameManager : Singleton<GameManager>
         Invoke("Stop", 3);
     }
 
-    private void Stop()
-    {
-        ChangeState(GameState.Finishing);
-        EndGameMenu.Instance.EndGame(false);
-    }
-
     public enum GameState {
         BeforeStart = 0,
         Starting = 1,
