@@ -1,9 +1,9 @@
-﻿Shader "MonkeyJAM/TexturePainter"{
+﻿Shader "MonkeyJAM/PaintEraser"{
 
     Properties{
         _PainterColor ("Painter Color", Color) = (0, 0, 0, 0)
         _EraseFeather ("Feather", Float) = 0.8
-        _Radius ("Radius", Float) = 0.1
+        _Radius_Radius ("Radius", Float) = 0.05
     }
 
     SubShader{

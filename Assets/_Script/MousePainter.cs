@@ -6,7 +6,10 @@ public class MousePainter : MonoBehaviour{
     public bool mouseSingleClick;
     [Space]
     public Color paintColor;
-    
+
+    public bool ActiveRightClick;
+    public bool ActiveLeftClick;
+
     public float radius = .1f;
     public float strength = 1;
     public float hardness = 1;
@@ -31,9 +34,9 @@ public class MousePainter : MonoBehaviour{
                 transform.position = hit.point;
                 Paintable p = hit.collider.GetComponent<Paintable>();
                 if(p != null){
-                    if(rightClick)
+                    if(rightClick && ActiveRightClick)
                         PaintManager.Instance.Paint(p, hit.point, radius, hardness, strength, paintColor);
-                    if(leftClick)
+                    if(leftClick && ActiveLeftClick)
                         PaintManager.Instance.Erase(p, hit.point, radius);
                 }
             }

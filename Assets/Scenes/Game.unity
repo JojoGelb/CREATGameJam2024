@@ -2426,6 +2426,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1289098524}
+  - component: {fileID: 1289098525}
+  - component: {fileID: 1289098526}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2454,6 +2456,41 @@ Transform:
   - {fileID: 1970505927}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1289098525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289098523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a921886517543e18b0d91c10a286c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texturePaint: {fileID: 4800000, guid: f5dc21d557c249a9974735d3d44795a7, type: 3}
+  extendIslands: {fileID: 4800000, guid: 34ca999939ac417f83cdda2a089c9a6e, type: 3}
+  erasePaint: {fileID: 4800000, guid: 9ba306a2ac914330be7d92cd7d41517e, type: 3}
+--- !u!114 &1289098526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289098523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e183c94360433b9bbaf0625c452e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 1888619396}
+  mouseSingleClick: 0
+  paintColor: {r: 0.5520134, g: 1, b: 0.07075471, a: 0.70980394}
+  ActiveRightClick: 1
+  ActiveLeftClick: 0
+  radius: 5
+  strength: 0.5
+  hardness: 0.1
 --- !u!1 &1291546152
 GameObject:
   m_ObjectHideFlags: 0
@@ -4070,6 +4107,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866366749}
   m_CullTransparentMesh: 1
+--- !u!20 &1888619396 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6278060163954989060, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+  m_PrefabInstance: {fileID: 7515226172185255998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1896880869
 GameObject:
   m_ObjectHideFlags: 0
@@ -4722,6 +4764,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6376922797631643633, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cb668e822fd59824eacf79ab811891a1, type: 2}
     - target: {fileID: 6948924693289780799, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5315,6 +5361,18 @@ PrefabInstance:
     - target: {fileID: 1020506519072118147, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
       propertyPath: jumpCD
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078970245185655949, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      propertyPath: WashingRadius
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078970245185655949, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      propertyPath: DistanceFromPlayer
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078970245185655949, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      propertyPath: MaxWashingDistance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5768977114072674001, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
       propertyPath: m_Name

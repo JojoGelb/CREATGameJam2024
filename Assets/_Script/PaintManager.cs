@@ -88,16 +88,16 @@ public class PaintManager : Singleton<PaintManager>{
         command.Clear();
     }
 
-    public void Erase(Paintable paintable, Vector3 pos, float radius){
+    public void Erase(Paintable paintable, Vector3 pos, float radius, float _eraseFeather = .2f){
         RenderTexture mask = paintable.getMask();
         RenderTexture uvIslands = paintable.getUVIslands();
         RenderTexture extend = paintable.getExtend();
         RenderTexture support = paintable.getSupport();
         Renderer rend = paintable.getRenderer();
 
-        //eraseMaterial.SetFloat(eraseFeather, .2f);
+        eraseMaterial.SetFloat(eraseFeather, _eraseFeather);
         eraseMaterial.SetVector(positionID, pos);
-        //eraseMaterial.SetFloat(radiusID, radius);
+        eraseMaterial.SetFloat(radiusID, radius);
         eraseMaterial.SetTexture(textureID, support); // _MainTex !!!!!!!!!!!!!!
         eraseMaterial.SetColor(colorID, Color.red);
 
@@ -117,6 +117,4 @@ public class PaintManager : Singleton<PaintManager>{
         Graphics.ExecuteCommandBuffer(command);
         command.Clear();
     }
-
-
 }
