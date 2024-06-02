@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static GameManager;
 
 public class PauseMenu : MonoBehaviour
@@ -9,6 +10,9 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenu;
     public GameObject settingsWindow;
+
+    public Button firstSelectedMainMenuElement;
+    public Dropdown firstSelectedSettingElement;
 
     private void Start()
     {
@@ -35,6 +39,7 @@ public class PauseMenu : MonoBehaviour
             }
         }else
         {
+            firstSelectedMainMenuElement.Select();
             pauseMenu.SetActive(true);
             GameManager.Instance.ChangeState(GameState.Pause);
         }
@@ -51,13 +56,16 @@ public class PauseMenu : MonoBehaviour
     public void Settings()
     {
         settingsWindow.SetActive(true);
+        firstSelectedSettingElement.Select();
         pauseMenu.SetActive(false);
     }
 
     public void CloseSettingsWindow()
     {
         settingsWindow.SetActive(false);
+        firstSelectedMainMenuElement.Select();
         pauseMenu.SetActive(true);
+
     }
 
     public void QuitGame()
