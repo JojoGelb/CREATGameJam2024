@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class OilPipeGameplay : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class OilPipeGameplay : MonoBehaviour
     private float wateredTime = 0f;
 
     private bool isBeingWatered = false;
+
+    public VisualEffect Explosion;
 
     private void Awake()
     {
@@ -27,9 +30,18 @@ public class OilPipeGameplay : MonoBehaviour
             wateredTime += Time.deltaTime;
             if(wateredTime > WateringTimeToDestroy )
             {
-                Destroy(gameObject);
+                transform.Find("Visual").gameObject.SetActive(false);
+                Explosion.enabled = true;
+                DestroyAfterTime(20f);
+                OilPipeManager.Instance?.RemoveOilPipe(this);
             }
         }
+    }
+
+    private IEnumerator DestroyAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
