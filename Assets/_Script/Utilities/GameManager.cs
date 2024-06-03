@@ -32,7 +32,7 @@ public class GameManager : Singleton<GameManager>
             case GameState.BeforeStart:
                 Time.timeScale = 1f;
                 //Do some start things
-                HandleBeforeStart();
+                Invoke(nameof(HandleBeforeStart),0.1f);
                 break;
             case GameState.Starting:
                 //Do some start things

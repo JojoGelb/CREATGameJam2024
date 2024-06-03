@@ -9,6 +9,7 @@ public class ScoreTimer : Singleton<ScoreTimer>
     private void Start()
     {
         GameManager.Instance.OnStateChanged += OnStateChanged;
+        timer = 0;
     }
 
     private void OnStateChanged(object sender, GameManager.EventGameStateArgs e)

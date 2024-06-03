@@ -18,11 +18,12 @@ public class UpdateUiTimer : MonoBehaviour
         while (true)
         {
             float timer = ScoreTimer.Instance.timer;
+
             int minutes = Mathf.FloorToInt(timer / 60);
             int seconds = Mathf.FloorToInt(timer % 60);
 
             string formattedTime = string.Format("{0:00}:{1:00}", minutes, seconds);
-            TmptText.text = formattedTime;
+            TmptText.SetText(formattedTime);
             yield return w;
         }
     }
