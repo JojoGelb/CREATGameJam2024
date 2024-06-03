@@ -28,7 +28,7 @@ namespace _Script
             RenderTexture currentActiveRT = RenderTexture.active;
 
             frame++;
-            if (frame % 20 != 0)
+            if (frame % 200 != 0)
             {
                 return;
             }
@@ -85,7 +85,7 @@ namespace _Script
                     var color = pixels[x + l * y];
 
                     var isTansparent = color == VOID;
-                    var isSemiTransparent = color != VOID && color.a != 255;
+                    var isSemiTransparent = color != VOID && color.a < 150;
 
                     if (isTansparent || isSemiTransparent)
                     {
@@ -97,7 +97,6 @@ namespace _Script
                             255
                         );
                     }
-
                     if (isTansparent)
                     {
                         states[x, y] = NEWLY_POLLUTED;
