@@ -9,8 +9,34 @@ public class MainMenu : MonoBehaviour
     public GameObject settingsWindow;
     public GameObject creditsWindow;
 
+    public GameObject mainWindow;
+
     public Button FirstSelectedMainMenu;
     public Dropdown FirstSelectedSettings;
+    public Button FirstSelectedCredits;
+
+    private void Start()
+    {
+        InputManager.Instance.RegisterToBEvent(OnBpressed);
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance?.UnRegisterToBEvent(OnBpressed);
+    }
+
+    private void OnBpressed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (settingsWindow.activeSelf == true)
+        {
+            CloseSettingsWindow();
+        }
+
+        if (creditsWindow.activeSelf == true)
+        {
+            CloseCredits();
+        }
+    }
 
     public void StartGame()
     {
@@ -26,22 +52,28 @@ public class MainMenu : MonoBehaviour
     {
         settingsWindow.SetActive(true);
         FirstSelectedSettings.Select();
+        mainWindow.SetActive(false);
     }
 
     public void Credits()
     {
         creditsWindow.SetActive(true);
+        mainWindow.SetActive(false);
+        FirstSelectedCredits.Select();
     }
 
     public void CloseCredits()
     {
         creditsWindow.SetActive(false);
+        mainWindow.SetActive(true);
+        FirstSelectedMainMenu.Select();
     }
 
     public void CloseSettingsWindow()
     {
         settingsWindow.SetActive(false);
         FirstSelectedMainMenu.Select();
+        mainWindow.SetActive(true);
     }
 
     public void QuitGame()

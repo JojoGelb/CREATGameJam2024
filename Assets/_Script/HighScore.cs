@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HighScore : MonoBehaviour
 {
@@ -10,6 +12,10 @@ public class HighScore : MonoBehaviour
     public TextMeshProUGUI textEmpty;
 
     public TMP_InputField inputField;
+
+    public GameObject mainMenu;
+    public Button BaseSelect;
+
 
     private void Awake()
     {
@@ -24,14 +30,35 @@ public class HighScore : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        InputManager.Instance.RegisterToBEvent(OnBpressed);
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance?.UnRegisterToBEvent(OnBpressed);
+    }
+
+    private void OnBpressed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if(transform.GetChild(0).gameObject.activeSelf == true){
+            CloseHighScore();
+        }
+    }
+
     public void CloseHighScore()
     {
         transform.GetChild(0).gameObject.SetActive(false);
         PlayerPrefs.SetString("CurrentName", inputField.text);
+        mainMenu.SetActive(true);
+        BaseSelect.Select();
     }
 
     public void OnHighScore()
     {
+        mainMenu.SetActive(false);
+        inputField.Select();
         transform.GetChild(0).gameObject.SetActive(true);
 
         List<HighScoreEntry> highScoreEntries = LoadHighScores();

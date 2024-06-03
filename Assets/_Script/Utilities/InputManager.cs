@@ -85,4 +85,18 @@ public class InputManager : Singleton<InputManager>
         if (playerInputAction == null) return;
         playerInputAction.Gameplay.Jump.started -= callback;
     }
+
+    public void RegisterToBEvent(Action<InputAction.CallbackContext> callback)
+    {
+        if (playerInputAction == null) return;
+        playerInputAction.UI.B.started += callback;
+    }
+
+    public void UnRegisterToBEvent(Action<InputAction.CallbackContext> callback)
+    {
+        if (playerInputAction == null) return;
+        playerInputAction.UI.B.started -= callback;
+    }
+
+
 }
