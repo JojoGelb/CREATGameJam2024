@@ -17,6 +17,19 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         InputManager.Instance?.RegisterToEscape(OnPausePressed);
+        InputManager.Instance?.RegisterToBEvent(OnBPressed);
+    }
+
+    private void OnBPressed(InputAction.CallbackContext context)
+    {
+        if (GameManager.Instance.state == GameState.Pause)
+        {
+            if (settingsWindow.activeSelf)
+            {
+                CloseSettingsWindow();
+                
+            }
+        }
     }
 
     private void OnPausePressed(InputAction.CallbackContext context)
