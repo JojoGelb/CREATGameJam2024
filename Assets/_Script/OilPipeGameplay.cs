@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Script;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -16,7 +17,7 @@ public class OilPipeGameplay : MonoBehaviour
 
     bool removedFromOilManager = false;
 
-    public float timeBetweenBurstOfPoiSon = 2f;
+    private float timeBetweenBurstOfPoiSon = 2f;
     public Vector3 maxForceBubble;
     public Vector3 minForceBubble;
 
@@ -55,6 +56,7 @@ public class OilPipeGameplay : MonoBehaviour
 
     private void Update()
     {
+        timeBetweenBurstOfPoiSon = DifficultyManager.Instance.GetTimeBetweenBurstOfPoiSon();
         if(isBeingWatered)
         {
             wateredTime += Time.deltaTime;
