@@ -73,6 +73,8 @@ namespace _Script
                 toVisit_x.Enqueue((ushort)fact.x);
                 toVisit_y.Enqueue((ushort)fact.y);
 
+                Debug.Log(fact.x + ", " + fact.y);
+
                 while (toVisit_x.Count != 0)
                 {
                     ushort x = toVisit_x.Dequeue();
