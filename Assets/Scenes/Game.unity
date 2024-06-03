@@ -823,6 +823,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8277466162864724428, guid: 1edcef8c56a12bb4f824ea2b38dd7ca6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277466162864724428, guid: 1edcef8c56a12bb4f824ea2b38dd7ca6, type: 3}
       propertyPath: paintColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -857,6 +861,22 @@ PrefabInstance:
     - target: {fileID: 301666683043329735, guid: f4e5240a2df601745b9b700a397834d7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 956715125717066672, guid: f4e5240a2df601745b9b700a397834d7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 19.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 956715125717066672, guid: f4e5240a2df601745b9b700a397834d7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 19.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 956715125717066672, guid: f4e5240a2df601745b9b700a397834d7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 19.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 956715125717066672, guid: f4e5240a2df601745b9b700a397834d7, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1186486970970380333, guid: f4e5240a2df601745b9b700a397834d7, type: 3}
       propertyPath: m_IsActive
