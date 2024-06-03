@@ -28,7 +28,7 @@ namespace _Script
             RenderTexture currentActiveRT = RenderTexture.active;
 
             frame++;
-            if (frame % 20 != 0)
+            if (frame % 100 != 0)
             {
                 return;
             }
