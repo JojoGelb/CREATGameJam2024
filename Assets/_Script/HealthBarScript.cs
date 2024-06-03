@@ -70,7 +70,7 @@ public class HealthBarScript : MonoBehaviour
 
     IEnumerator UpdateHealthBar()
     {
-        yield return new WaitForSeconds(5); //quick fix: strangely the texture2D return 1 on the first few frames
+        yield return new WaitForSeconds(7); //quick fix: strangely the texture2D return 1 on the first few frames
         while (true)
         {
             float health = PollutionManager.Instance.GetPercentageTextureFilled();
