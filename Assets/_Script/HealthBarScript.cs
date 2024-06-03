@@ -14,18 +14,18 @@ public class HealthBarScript : MonoBehaviour
     [Range(0f, 1f)]
     public float lostPercentage = 0.9f;
 
-    private WaitForSecondsRealtime w;
+    private WaitForSeconds w;
 
     private void Start()
     {
-        w = new WaitForSecondsRealtime(UpdateRateInSeconds);
+        w = new WaitForSeconds(UpdateRateInSeconds);
         StartCoroutine(UpdateHealthBar());
         slider.value = 0;
     }
 
     IEnumerator UpdateHealthBar()
     {
-        yield return new WaitForSecondsRealtime(3); //quick fix: strangely the texture2D return 1 on the first few frames
+        yield return new WaitForSeconds(3); //quick fix: strangely the texture2D return 1 on the first few frames
         while (true)
         {
             float health = PollutionManager.Instance.GetPercentageTextureFilled();
