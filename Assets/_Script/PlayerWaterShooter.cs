@@ -30,8 +30,11 @@ public class PlayerWaterShooter : MonoBehaviour
     public Transform AimDirection;
     public GameObject Planet;
 
+    private AudioSource audio;
+
     private void Start()
     {
+        audio = GetComponent<AudioSource>();
         baseMovespeed = playerController.moveSpeed;
         waterGunParticleSystem.Stop();
         InputManager.Instance.RegisterToFireEventStarted(OnFireStarted);
@@ -73,6 +76,7 @@ public class PlayerWaterShooter : MonoBehaviour
         if (removeMoveSpeedWhenShooting)
             playerController.moveSpeed = 0;
         isShooting = true;
+        audio.Play();
     }
 
     private void OnFireCanceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -88,6 +92,7 @@ public class PlayerWaterShooter : MonoBehaviour
         isShooting = false;
         playerController.moveSpeed = baseMovespeed;
         oilPipeGameplays.Clear();
+        audio.Stop();
     }
 
     private void OnTriggerEnter(Collider other)

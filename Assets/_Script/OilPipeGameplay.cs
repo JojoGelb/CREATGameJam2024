@@ -63,6 +63,7 @@ public class OilPipeGameplay : MonoBehaviour
                 if (removedFromOilManager)
                     return;
                 removedFromOilManager=true;
+                GetComponent<AudioSource>().Play();
                 OilPipeManager.Instance?.RemoveOilPipe(this);
             }
         }
