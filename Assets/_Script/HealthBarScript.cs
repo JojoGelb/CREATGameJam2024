@@ -40,6 +40,7 @@ public class HealthBarScript : MonoBehaviour
     {
         if(flash)
         {
+
             float duration = 0.5f;
             float halfDuration = duration / 2;
             currentTime += Time.deltaTime;
@@ -68,6 +69,8 @@ public class HealthBarScript : MonoBehaviour
         }
     }
 
+    bool isInDanger = false;
+
     IEnumerator UpdateHealthBar()
     {
         yield return new WaitForSeconds(7); //quick fix: strangely the texture2D return 1 on the first few frames
@@ -85,6 +88,12 @@ public class HealthBarScript : MonoBehaviour
             if (health > DangerousPercentage)
             {
                 flash = true;
+                if (!isInDanger)
+                    GetComponent<AudioSource>().Play();
+                isInDanger = true;
+            }else
+            {
+                isInDanger = false;
             }
 
             yield return w;
@@ -92,6 +101,6 @@ public class HealthBarScript : MonoBehaviour
 
         slider.value = slider.maxValue;
 
-        EndGameMenu.Instance.EndGame(false, "THE HUMAN POLLUTION WAS TOO MUCH FOR YOUR PLANET TO HANDLE");
+        EndGameMenu.Instance.EndGame(false, "THE HUMAN POLLUTION HAS KILLED ALL LIFE ON YOUR PLANET");
     }
 }
