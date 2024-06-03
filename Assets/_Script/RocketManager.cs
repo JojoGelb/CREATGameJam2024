@@ -12,7 +12,7 @@ public class RocketManager : Singleton<RocketManager>
 
     //public AnimationCurve SpawnSpeedCurveMultiplier;
 
-    [FormerlySerializedAs("InitialRocketSpawnInterval")] public float SpawnInterval = 5;
+    public float SpawnInterval = 5;
 
 
     

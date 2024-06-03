@@ -15,7 +15,7 @@ namespace _Script
         private RenderTexture renderTexture; // La RenderTexture à modifier
         private Texture2D texture2D; // La texture 2D utilisée pour lire et écrire les pixels
 
-        public int FramesBetweenDilatationPass;
+        public int FramesBetweenDilatationPass = 150;
 
 
         // Tableau utilisé pour stocker des données de la propagation de pollution

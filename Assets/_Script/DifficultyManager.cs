@@ -20,10 +20,10 @@ namespace _Script
 
             if (Mathf.CeilToInt(timer) % 15 == 0 && Mathf.CeilToInt(lastFrame) % 15 != 0)
             {
-                RocketManager.Instance.SpawnInterval *= 0.85f;
+                RocketManager.Instance.SpawnInterval *= 0.75f;
 
-                int tmpDilatationPass = Mathf.CeilToInt(PollutionManager.Instance.FramesBetweenDilatationPass* 0.85f);
-                PollutionManager.Instance.FramesBetweenDilatationPass = tmpDilatationPass;
+                //int tmpDilatationPass = Mathf.CeilToInt(PollutionManager.Instance.FramesBetweenDilatationPass* 0.85f);
+                //PollutionManager.Instance.FramesBetweenDilatationPass = tmpDilatationPass;
             }
             lastFrame = timer;
         }
