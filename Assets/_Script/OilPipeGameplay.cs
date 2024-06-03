@@ -14,15 +14,12 @@ public class OilPipeGameplay : MonoBehaviour
     public VisualEffect Explosion;
     public VisualEffect Watered;
 
+    bool removedFromOilManager = false;
+
     private void Awake()
     {
         OilPipeManager.Instance?.AddOilPipe(this);
         Watered.Stop();
-    }
-
-    private void OnDestroy()
-    {
-        OilPipeManager.Instance?.RemoveOilPipe(this);
     }
 
     private void Update()
@@ -38,6 +35,9 @@ public class OilPipeGameplay : MonoBehaviour
                 GetComponent<BoxCollider>().enabled = false;
                 Watered.Stop();
                 DestroyAfterTime(20f);
+                if (removedFromOilManager)
+                    return;
+                removedFromOilManager=true;
                 OilPipeManager.Instance?.RemoveOilPipe(this);
             }
         }

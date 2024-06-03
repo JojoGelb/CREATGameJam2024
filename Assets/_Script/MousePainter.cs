@@ -37,7 +37,6 @@ public class MousePainter : MonoBehaviour{
             if (Physics.Raycast(ray, out hit, 100.0f)){
                 Debug.DrawRay(ray.origin, hit.point - ray.origin, Color.red);
                 transform.position = hit.point;
-                Debug.Log("Mouse 2D: " + hit.textureCoord2);
                 Paintable p = hit.collider.GetComponent<Paintable>();
                 if(p != null){
                     if(rightClick && ActiveRightClick)

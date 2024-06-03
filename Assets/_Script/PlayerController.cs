@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 10f;
+    private float maxMoveSpeed;
     private Rigidbody rb;
 
     private Vector3 moveDir;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         InputManager.Instance.RegisterToJumpEvent(OnJumpPressed);
+        maxMoveSpeed = moveSpeed;
     }
 
     private void OnDisable()
@@ -49,12 +51,13 @@ public class PlayerController : MonoBehaviour
         jumpTimer += Time.deltaTime;
 
         int r = (int)(GetColorAtPosition().r * 10);
-        Debug.Log("R: " + r);
         if (r == 3)
         {
             if (!slowed)
             {
                 moveSpeed -= pollutionSlowDown;
+                if(moveSpeed < maxMoveSpeed - pollutionSlowDown)
+                    moveSpeed = maxMoveSpeed - pollutionSlowDown;
                 slowed = true;
             }
         }
@@ -63,6 +66,10 @@ public class PlayerController : MonoBehaviour
             if (slowed)
             {
                 moveSpeed += pollutionSlowDown;
+                if(moveSpeed > maxMoveSpeed)
+                {
+                    moveSpeed = maxMoveSpeed;
+                }
                 slowed = false;
             }
         }
@@ -99,7 +106,6 @@ public class PlayerController : MonoBehaviour
             return Color.white;
         } else
         {
-            Debug.Log("Hit right dude");
             return po.GetColorAtPosition(hit);
         }
     }

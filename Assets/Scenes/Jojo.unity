@@ -775,6 +775,10 @@ PrefabInstance:
       propertyPath: jumpCD
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1020506519072118147, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      propertyPath: layer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 2078970245185655949, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
       propertyPath: Planet
       value: 
