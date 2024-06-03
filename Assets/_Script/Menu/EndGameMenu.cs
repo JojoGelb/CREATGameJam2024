@@ -78,20 +78,16 @@ public class EndGameMenu : Singleton<EndGameMenu>
             if ((highScoreEntries[index].minutes < minutes) ||
                 (highScoreEntries[index].minutes == minutes && (highScoreEntries[index].seconds < seconds))) {
                 highScoreEntries[index] = new HighScoreEntry(minutes, seconds, PlayerPrefs.GetString("CurrentName"));
-                highScoreEntries.Sort((x, y) => x.TotalTime().CompareTo(y.TotalTime()));
             }
         }
 
+        highScoreEntries.Sort((x, y) => y.TotalTime().CompareTo(x.TotalTime()));
+
         for (int i = 0; i < highScoreEntries.Count; i++)
         {
-            if ((highScoreEntries[i].minutes < minutes) ||
-                (highScoreEntries[i].minutes == minutes && (highScoreEntries[i].seconds < seconds)))
-            {
                 PlayerPrefs.SetFloat("HighScore_Minutes_" + i, highScoreEntries[i].minutes);
                 PlayerPrefs.SetFloat("HighScore_Seconds_" + i, highScoreEntries[i].seconds);
                 PlayerPrefs.SetString("HighScore_Name_" + i, highScoreEntries[i].name);
-            }
-
         }
         PlayerPrefs.Save();
     }

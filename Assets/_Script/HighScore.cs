@@ -18,6 +18,9 @@ public class HighScore : MonoBehaviour
         if(name == "")
         {
             inputField.text = "Monkeyta";
+        } else
+        {
+            inputField.text = name;
         }
     }
 
