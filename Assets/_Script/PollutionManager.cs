@@ -33,14 +33,19 @@ namespace _Script
             RenderTexture currentActiveRT = RenderTexture.active;
 
             frame++;
+
+            if(frame % 20 != 0) {
+                RenderTexture.active = renderTexture;
+                texture2D.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+            }
+
             if (frame % 200 != 0)
             {
                 return;
             }
 
-            RenderTexture.active = renderTexture;
-            texture2D.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
-            texture2D.Apply();
+
+            //texture2D.Apply();
 
             DilutePollution();
             ApplyTexture();

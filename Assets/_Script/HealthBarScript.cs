@@ -74,7 +74,6 @@ public class HealthBarScript : MonoBehaviour
         while (true)
         {
             float health = PollutionManager.Instance.GetPercentageTextureFilled();
-            Debug.Log(health);
 
             if(health >= lostPercentage)
             {
