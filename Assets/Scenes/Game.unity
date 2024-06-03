@@ -451,6 +451,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1799371878790707717, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6376922797631643633, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -498,6 +502,14 @@ PrefabInstance:
     - target: {fileID: 7288239505446104086, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
       propertyPath: m_Name
       value: Sphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335461187565018282, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335461187565018282, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

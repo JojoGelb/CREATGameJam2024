@@ -56,8 +56,10 @@ namespace _Script
 
             foreach(OilPipeGameplay factory in factories)
             {
-                UVCoordinateFinder.FindUVPoint(factory.transform);
+                factories2D.Add(UVCoordinateFinder.FindUVPoint(factory.transform));
             }
+
+
 
 
             // 1D to 2D
