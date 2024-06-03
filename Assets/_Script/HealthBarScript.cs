@@ -10,7 +10,6 @@ public class HealthBarScript : MonoBehaviour
 
     public Slider slider;
     public Image fillBar;
-    public float UpdateRateInSeconds = 0.2f;
     public float UpdateRateInSeconds = 0.5f;
 
     [Range(0f, 1f)]
