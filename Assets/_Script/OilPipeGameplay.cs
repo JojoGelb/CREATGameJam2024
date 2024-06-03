@@ -22,6 +22,10 @@ public class OilPipeGameplay : MonoBehaviour
 
     public Transform BubbleSpawnPosition;
 
+    public AudioClip explosionClip;
+    public AudioClip landingClip;
+    private AudioSource audiosource;
+
     private void Awake()
     {
         OilPipeManager.Instance?.AddOilPipe(this);
@@ -31,6 +35,8 @@ public class OilPipeGameplay : MonoBehaviour
     private void Start()
     {
         Invoke(nameof(SpawnBubble), timeBetweenBurstOfPoiSon);
+        audiosource = GetComponent<AudioSource>();
+        audiosource.PlayOneShot(landingClip);
     }
 
     void SpawnBubble()
@@ -63,7 +69,7 @@ public class OilPipeGameplay : MonoBehaviour
                 if (removedFromOilManager)
                     return;
                 removedFromOilManager=true;
-                GetComponent<AudioSource>().Play();
+                audiosource.PlayOneShot(explosionClip);
                 OilPipeManager.Instance?.RemoveOilPipe(this);
             }
         }

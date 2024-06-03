@@ -448,6 +448,8 @@ MonoBehaviour:
   maxForceBubble: {x: 2, y: 2, z: 2}
   minForceBubble: {x: -2, y: 2, z: -2}
   BubbleSpawnPosition: {fileID: 4263842003407088126}
+  explosionClip: {fileID: 8300000, guid: a52d09006a6fd5a4c99bfb65803a6db9, type: 3}
+  landingClip: {fileID: 8300000, guid: 0a8d7718be715b34f840237adaaae112, type: 3}
 --- !u!54 &1055420701938927362
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -500,7 +502,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4315126484616451171, guid: 879ccef23fa660c4e82d59d1faa32496, type: 2}
   m_audioClip: {fileID: 8300000, guid: a52d09006a6fd5a4c99bfb65803a6db9, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
