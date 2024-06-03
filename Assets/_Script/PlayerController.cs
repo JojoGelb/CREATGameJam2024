@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public float pollutionSlowDown = 2f;
     private bool slowed = false;
 
+    private float waitTimer = 0;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -50,6 +51,11 @@ public class PlayerController : MonoBehaviour
         moveDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
         jumpTimer += Time.deltaTime;
 
+        if(waitTimer < 4f)
+        {
+            waitTimer += Time.deltaTime;
+            return;
+        }
         //float alpha = (int)GetColorAtPosition().a;
         if (GetColorAtPosition() != Color.clear)
         {
