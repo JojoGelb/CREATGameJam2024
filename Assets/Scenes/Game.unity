@@ -712,29 +712,9 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 4294967295
       objectReference: {fileID: 0}
-    - target: {fileID: 5128444357797299671, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4711208715938537054, guid: 3e129eb709cba2a40b8261a381f8bc8b, type: 3}
     - target: {fileID: 5965644493784589296, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
       propertyPath: FramesBetweenDilatationPass
       value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6376922797631643633, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: cb668e822fd59824eacf79ab811891a1, type: 2}
-    - target: {fileID: 6948924693289780799, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6948924693289780799, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6948924693289780799, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6948924693289780799, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
       propertyPath: m_LocalPosition.x
@@ -780,28 +760,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sphere
       objectReference: {fileID: 0}
-    - target: {fileID: 7335461187565018282, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4711208715938537054, guid: 3e129eb709cba2a40b8261a381f8bc8b, type: 3}
-    - target: {fileID: 7335461187565018282, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7335461187565018282, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
-      propertyPath: m_CookingOptions
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7335461187565018282, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
-      propertyPath: m_ProvidesContacts
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7335461187565018282, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2304561373018707778, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
