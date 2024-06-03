@@ -589,6 +589,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7288239505446104086, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
   m_PrefabInstance: {fileID: 520712716089184044}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1539216107 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 139515889633615545, guid: 1edcef8c56a12bb4f824ea2b38dd7ca6, type: 3}
+  m_PrefabInstance: {fileID: 3345851289566310178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1539216108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539216107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0007442cb74f9999def0d891a3b95d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1611941617
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,6 +716,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 4711208715938537054, guid: 3e129eb709cba2a40b8261a381f8bc8b, type: 3}
+    - target: {fileID: 5965644493784589296, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
+      propertyPath: FramesBetweenDilatationPass
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 6376922797631643633, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -842,10 +863,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8277466162864724428, guid: 1edcef8c56a12bb4f824ea2b38dd7ca6, type: 3}
+      propertyPath: paintColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277466162864724428, guid: 1edcef8c56a12bb4f824ea2b38dd7ca6, type: 3}
+      propertyPath: paintColor.g
+      value: 0.19215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277466162864724428, guid: 1edcef8c56a12bb4f824ea2b38dd7ca6, type: 3}
+      propertyPath: paintColor.r
+      value: 0.5921569
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 139515889633615545, guid: 1edcef8c56a12bb4f824ea2b38dd7ca6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1539216108}
   m_SourcePrefab: {fileID: 100100000, guid: 1edcef8c56a12bb4f824ea2b38dd7ca6, type: 3}
 --- !u!1001 &7004444527722887669
 PrefabInstance:
