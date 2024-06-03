@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4219346425270804424}
   m_Layer: 0
   m_Name: WaterGunVisualEffect
-  m_TagString: Untagged
+  m_TagString: WaterGun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -482,6 +482,10 @@ MonoBehaviour:
   jumpForce: 100
   jumpCD: 1.5
   rotationSpeed: 400
+  pollutionSlowDown: 2
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &4727732269922336078
 MonoBehaviour:
   m_ObjectHideFlags: 0

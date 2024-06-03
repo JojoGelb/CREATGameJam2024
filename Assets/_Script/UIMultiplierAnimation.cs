@@ -35,7 +35,7 @@ public class MultiplierAnimation : MonoBehaviour
         tmpText.text = "X0";
 
         baseScale = transform.localScale.x;
-        OilPipeManager.Instance.OnOilPipeCountChanged.AddListener(ChangeMultiplier);
+        OilPipeManager.Instance?.OnOilPipeCountChanged.AddListener(ChangeMultiplier);
     }
 
     private void OnDisable()

@@ -653,6 +653,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5151922770628431156, guid: 1edcef8c56a12bb4f824ea2b38dd7ca6, type: 3}
+      propertyPath: poolPrefabSetUps.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5151922770628431156, guid: 1edcef8c56a12bb4f824ea2b38dd7ca6, type: 3}
+      propertyPath: poolPrefabSetUps.Array.data[2].tag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5151922770628431156, guid: 1edcef8c56a12bb4f824ea2b38dd7ca6, type: 3}
+      propertyPath: poolPrefabSetUps.Array.data[2].prefab
+      value: 
+      objectReference: {fileID: 3387279741736806812, guid: 29cd59f8f4d6a044383451bd1e80cd6f, type: 3}
     - target: {fileID: 8277466162864724428, guid: 1edcef8c56a12bb4f824ea2b38dd7ca6, type: 3}
       propertyPath: cam
       value: 

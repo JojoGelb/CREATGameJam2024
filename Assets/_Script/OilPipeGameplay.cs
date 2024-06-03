@@ -16,10 +16,35 @@ public class OilPipeGameplay : MonoBehaviour
 
     bool removedFromOilManager = false;
 
+    public float timeBetweenBurstOfPoiSon = 2f;
+    public Vector3 maxForceBubble;
+    public Vector3 minForceBubble;
+
+    public Transform BubbleSpawnPosition;
+
     private void Awake()
     {
         OilPipeManager.Instance?.AddOilPipe(this);
         Watered.Stop();
+    }
+
+    private void Start()
+    {
+        Invoke(nameof(SpawnBubble), timeBetweenBurstOfPoiSon);
+    }
+
+    void SpawnBubble()
+    {
+        if (removedFromOilManager) return;
+        GameObject g = ObjectPooler.Instance.GetOrCreateGameObjectFromPool(ObjectPooler.PoolObject.PoisonBubble);
+        g.transform.parent = transform;
+        g.transform.localRotation = Quaternion.identity;
+        g.transform.position = BubbleSpawnPosition.position;
+        Vector3 force = new Vector3(Random.Range(minForceBubble.x, maxForceBubble.x), Random.Range(minForceBubble.y, maxForceBubble.y), Random.Range(minForceBubble.z, maxForceBubble.z));
+        Rigidbody rbBubble = g.GetComponent<Rigidbody>();
+        rbBubble.velocity = Vector3.zero;
+        rbBubble.AddForce(force, ForceMode.Impulse);
+        Invoke(nameof(SpawnBubble), timeBetweenBurstOfPoiSon);
     }
 
     private void Update()
@@ -51,6 +76,7 @@ public class OilPipeGameplay : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag != "WaterGun") return;
         isBeingWatered=true;
         Watered.Play();
     }
@@ -63,7 +89,8 @@ public class OilPipeGameplay : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        isBeingWatered=false;
+        if (other.gameObject.tag != "WaterGun") return;
+        isBeingWatered =false;
         Watered.Stop();
     }
 

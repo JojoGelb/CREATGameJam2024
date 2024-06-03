@@ -21,7 +21,7 @@ public class PointerOilStations : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        OilPipeManager.Instance.OnOilPipeCountChanged.AddListener(ResetPointers);
+        OilPipeManager.Instance?.OnOilPipeCountChanged.AddListener(ResetPointers);
         w = new WaitForSecondsRealtime(refreshRate);
         StartCoroutine(UpdateArrow());
     }

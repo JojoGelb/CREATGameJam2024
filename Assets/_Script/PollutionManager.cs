@@ -51,7 +51,7 @@ namespace _Script
             var pixels = texture2D.GetPixelData<Color32>(0);
             ushort l = (ushort)Math.Sqrt(pixels.Length);
 
-            List<OilPipeGameplay> factories = OilPipeManager.Instance.GetOliPipesInGame();
+            List<OilPipeGameplay> factories = OilPipeManager.Instance?.GetOliPipesInGame();
 
             var states = new byte[l, l];
             byte NO_VISITED = 0, ALREADY_PROCESSED = 1, NEWLY_POLLUTED = 2, IN_QUEUE = 3;
@@ -65,6 +65,7 @@ namespace _Script
             // -----------------
             // ALGO
             // -----------------
+            if (factories == null) return;
             foreach (OilPipeGameplay factory in factories)
             {
                 Vector2 fact = GetTextureCoordsOnPlanet(factory.transform.position);
@@ -137,7 +138,7 @@ namespace _Script
 
         void ApplyTexture()
         {
-            GetComponent<Renderer>().material.SetTexture("_MaskTexture", texture2D);
+            //GetComponent<Renderer>().material.SetTexture("_MaskTexture", texture2D);
             RenderTexture.active = renderTexture;
             Graphics.Blit(texture2D, renderTexture);
             Graphics.Blit(texture2D, GetComponent<Paintable>().getSupport());

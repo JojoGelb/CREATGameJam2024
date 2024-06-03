@@ -7,12 +7,12 @@ public class FauxGravityAttractor : MonoBehaviour
 
     public static FauxGravityAttractor instance;
 
-    private SphereCollider col;
+    private MeshCollider col;
 
     void Awake()
     {
         instance = this;
-        col = GetComponent<SphereCollider>();
+        col = GetComponent<MeshCollider>();
     }
 
     public float gravity = -10f;
@@ -29,7 +29,7 @@ public class FauxGravityAttractor : MonoBehaviour
 
     public void PlaceOnSurface(Rigidbody body, float distanceToSurface)
     {
-        body.MovePosition((body.position - transform.position).normalized * (transform.localScale.x * col.radius));
+        body.MovePosition((body.position - transform.position).normalized * (transform.localScale.x * 0.5000004f /*sphere radius col.radius*/));
 
         RotateBody(body);
 

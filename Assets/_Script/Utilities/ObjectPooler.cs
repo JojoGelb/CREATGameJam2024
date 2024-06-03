@@ -7,7 +7,8 @@ public class ObjectPooler : Singleton<ObjectPooler>
     public enum PoolObject
     {
         Sound = 0,
-        Arrow = 1
+        Arrow = 1,
+        PoisonBubble = 2
     }
 
     [System.Serializable]
