@@ -10,7 +10,7 @@ public class InputManager : Singleton<InputManager>
 {
     private PlayerControls playerInputAction;
 
-    public static event Action<InputActionMap> actionMapChange;
+    //public static event Action<InputActionMap> actionMapChange;
 
 
     protected override void Awake()
