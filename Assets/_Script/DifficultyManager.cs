@@ -25,7 +25,7 @@ namespace _Script
 
             if (Mathf.CeilToInt(timer) % 15 == 0 && Mathf.CeilToInt(lastFrame) % 15 != 0)
             {
-                RocketManager.Instance.SpawnInterval = Mathf.Max(.4f, RocketManager.Instance.SpawnInterval * 0.75f);
+                RocketManager.Instance.SpawnInterval = Mathf.Max(.4f, RocketManager.Instance.SpawnInterval * 0.85f);
                 timeBetweenBurstOfPoiSon = Mathf.Max(.2f, timeBetweenBurstOfPoiSon * .9f);
 
                 //int tmpDilatationPass = Mathf.CeilToInt(PollutionManager.Instance.FramesBetweenDilatationPass* 0.85f);
