@@ -124,11 +124,13 @@ namespace _Script
 
         public float GetPercentageTextureFilled()
         {
+            if (texture2D == null) return 0;
             Color[] pixels = texture2D.GetPixels();
 
             float pixelColored = 0;
 
             Color c = new Color(0, 0, 0, 0);
+
             for (int i = 0; i < pixels.Length; i++)
             {
                 if (c != pixels[i])

@@ -1,3 +1,7 @@
+using _Script;
+using DG.Tweening;
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,15 +9,34 @@ public class HealthBarScript : MonoBehaviour
 {
 
     public Slider slider;
+    public float UpdateRateInSeconds = 0.2f;
 
-    public void SetHealth(int health)
+    [Range(0f, 1f)]
+    public float lostPercentage = 0.9f;
+
+    private WaitForSecondsRealtime w;
+
+    private void Start()
     {
-        slider.value = health;
+        w = new WaitForSecondsRealtime(UpdateRateInSeconds);
+        StartCoroutine(UpdateHealthBar());
+        slider.value = 0;
     }
 
-    public void SetMaxHealth(int value)
+    IEnumerator UpdateHealthBar()
     {
-        slider.maxValue = value;
-        slider.value = value;
+        yield return new WaitForSecondsRealtime(3); //quick fix: strangely the texture2D return 1 on the first few frames
+        while (true)
+        {
+            float health = PollutionManager.Instance.GetPercentageTextureFilled();
+            slider.DOValue(health, 1);
+            if(health > lostPercentage)
+            {
+                break;
+            }
+            yield return w;
+        }
+
+        EndGameMenu.Instance.EndGame(false, "THE HUMAN POLLUTION WAS TOO MUCH FOR YOUR PLANET TO HANDLE");
     }
 }

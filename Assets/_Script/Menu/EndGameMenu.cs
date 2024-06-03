@@ -32,6 +32,7 @@ public class EndGameMenu : Singleton<EndGameMenu>
         }
 
         if (explanation == "") TextExplanation.text = "THE MONKING IS PROUD OF YOUR PERFORMANCE AND IS EAGER TO SEE YOUR NEXT ATTEMPT";
+        else TextExplanation.text = explanation;
 
         float timer = ScoreTimer.Instance.timer;
         int minutes = Mathf.FloorToInt(timer / 60);
