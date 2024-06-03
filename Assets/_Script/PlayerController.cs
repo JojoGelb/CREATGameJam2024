@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
         if (!Physics.Raycast(transform.position + transform.up * 10,-transform.up, out hit,Mathf.Infinity ,1<<7 ))
         {
             Debug.Log("Not found");
-            return Color.white;
+            return new Color(0,0,0,0);
         }
             
 
