@@ -15,12 +15,17 @@ namespace _Script
         private RenderTexture renderTexture; // La RenderTexture à modifier
         private Texture2D texture2D; // La texture 2D utilisée pour lire et écrire les pixels
 
+        // Tableau utilisé pour stocker des données de la propagation de pollution
+        private ushort[] dataArray;
+
         private int frame = 0;
 
         void Start()
         {
             renderTexture = GetComponent<Paintable>().getSupport();
             texture2D = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, 6, false);
+
+            dataArray = new ushort[renderTexture.width * renderTexture.height];
         }
 
         void Update()
@@ -53,14 +58,11 @@ namespace _Script
 
             List<OilPipeGameplay> factories = OilPipeManager.Instance?.GetOliPipesInGame();
 
-            var states = new byte[l, l];
+            //var states = new byte[l, l];
             byte NO_VISITED = 0, ALREADY_PROCESSED = 1, NEWLY_POLLUTED = 2, IN_QUEUE = 3;
-
-            Color VOID = new Color(0, 0, 0, 0);
 
             Queue<ushort> toVisit_x = new Queue<ushort>();
             Queue<ushort> toVisit_y = new Queue<ushort>();
-
 
             // -----------------
             // ALGO
@@ -69,7 +71,8 @@ namespace _Script
             foreach (OilPipeGameplay factory in factories)
             {
                 Vector2 fact = GetTextureCoordsOnPlanet(factory.transform.position);
-                if (states[(ushort)fact.x, (ushort)fact.y] == ALREADY_PROCESSED)
+                //if (states[(ushort)fact.x, (ushort)fact.y] == ALREADY_PROCESSED)
+                if (dataArray[(int)(fact.x + l * fact.y)] == ALREADY_PROCESSED)
                     continue;
                 toVisit_x.Enqueue((ushort)fact.x);
                 toVisit_y.Enqueue((ushort)fact.y);
@@ -84,8 +87,8 @@ namespace _Script
                     // HANDLE CURRENT CELL
                     var color = pixels[x + l * y];
 
-                    var isTansparent = color == VOID;
-                    var isSemiTransparent = color != VOID && color.a < 150;
+                    var isTansparent = color.a == 0;
+                    var isSemiTransparent = color.a != 0 && color.a < 150;
 
                     if (isTansparent || isSemiTransparent)
                     {
@@ -97,14 +100,17 @@ namespace _Script
                             255
                         );
                     }
+
                     if (isTansparent)
                     {
-                        states[x, y] = NEWLY_POLLUTED;
+                        //states[x, y] = NEWLY_POLLUTED;
+                        dataArray[x + l * y] = NEWLY_POLLUTED;
                     }
                     else
                     {
                         // Pollution
-                        states[x, y] = ALREADY_PROCESSED;
+                        //states[x, y] = ALREADY_PROCESSED;
+                        dataArray[x + l * y] = ALREADY_PROCESSED;
 
                         // LEFT
                         ushort dx = (x == 0) ? (ushort)(l - 1) : (ushort)(x - 1);
@@ -127,17 +133,23 @@ namespace _Script
 
             texture2D.Apply();
 
+            // ------------------------
+            // DATA CLEANUP
+            // ------------------------
+            Array.Clear(dataArray, 0, dataArray.Length);
 
             // ------------------------
             // SUB FUNCTION
             // ------------------------
             void HandleLinkedCell(ushort x, ushort y)
             {
-                if (states[x, y] == NO_VISITED)
+                //if (states[x, y] == NO_VISITED)
+                if (dataArray[x + l * y] == NO_VISITED)
                 {
                     toVisit_x.Enqueue(x);
                     toVisit_y.Enqueue(y);
-                    states[x, y] = IN_QUEUE;
+                    //states[x, y] = IN_QUEUE;
+                    dataArray[x + l * y] = IN_QUEUE;
                 }
             }
         }
