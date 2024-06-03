@@ -1,6 +1,9 @@
+using _Script;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TreeVisualUpdate : MonoBehaviour
 {
@@ -9,25 +12,31 @@ public class TreeVisualUpdate : MonoBehaviour
 
     public float Polluted;
 
-    private int remainingBeforeUpdate = 15;
+    //private void Awake()
+    //{
+    //    StartTree();
+    //}
 
-    void Start()
+    private void Update()
+    {
+        //TreeUpdate();
+    }
+
+    public void StartTree()
     {
         localMaterial = new Material(BaseMaterial);
         GetComponent<MeshRenderer>().material = localMaterial;
-        remainingBeforeUpdate = Random.Range(15, 30);
     }
 
-    void Update()
+    public void TreeUpdate()
     {
-        if (remainingBeforeUpdate == 0)
-        {
-            localMaterial.SetFloat("_Polluted", Polluted);
-            remainingBeforeUpdate = Random.Range(30, 60);
-        }
+        Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 25);
+
+        var color = PollutionManager.Instance.GetColorAtPosition(hit);
+
+        if (color.a > .1f)
+            localMaterial.SetFloat("_Polluted", 1);
         else
-            remainingBeforeUpdate--;
-
-
+            localMaterial.SetFloat("_Polluted", 0);
     }
 }

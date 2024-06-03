@@ -186,6 +186,7 @@ MonoBehaviour:
     - {fileID: 118422, guid: 107cc8771223daf48be99527559937ff, type: 3}
     - {fileID: 136866, guid: 2327ed4809c34cf4c97a5316db3d4796, type: 3}
     - {fileID: 176278, guid: 3c74caa0496b18d4ba0a1009ebb4c992, type: 3}
+  UpdatePoolNumber: 100
 --- !u!114 &7493114662189955171
 MonoBehaviour:
   m_ObjectHideFlags: 0

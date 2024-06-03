@@ -1,9 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class TreeSpawn : MonoBehaviour
+public class TreeManager : Singleton<TreeManager>
 {
 
     public float PlanetRadius;
@@ -14,11 +15,20 @@ public class TreeSpawn : MonoBehaviour
     public List<TreePool> TreePools;
     private List<int> RandomMatch = new();
 
+    public int UpdatePoolNumber = 10;
+    private List<HashSet<TreeVisualUpdate>> updatePools = new();
+    private int poolTurnNumber = 0;
+
     void Start()
     {
+        for (int n = 0; n < UpdatePoolNumber; n++)
+        {
+            updatePools.Add(new());
+        }
+
         Shuffle();
 
-        for (uint i = 0; i < TreeNumber; i++)
+        for (int i = 0; i < TreeNumber; i++)
         {
             float lat = 0;
             float lon = 0;
@@ -34,7 +44,11 @@ public class TreeSpawn : MonoBehaviour
                 tree = ChooseTree(lat, lon);
             }
 
-            PlaceTree(tree, lat, lon);
+            var treeComponent = PlaceTree(tree, lat, lon).GetComponent<TreeVisualUpdate>();
+
+            treeComponent.StartTree();
+
+            updatePools[i % UpdatePoolNumber].Add(treeComponent);
         }
         
     }
@@ -53,7 +67,7 @@ public class TreeSpawn : MonoBehaviour
         }
     }
 
-    private void PlaceTree(GameObject tree, float lat, float lon)
+    private GameObject PlaceTree(GameObject tree, float lat, float lon)
     {
         var newTree = Instantiate(tree, new(0, 0, 0), new(0, 0, 0, 0), transform);
 
@@ -64,6 +78,8 @@ public class TreeSpawn : MonoBehaviour
         newTree.transform.parent = null;
         newTree.transform.localScale = Vector3.one * TreeSize * Mathf.Clamp(TreePerlineNoise(lat, lon), 0f, .4f);
         newTree.transform.parent = transform;
+
+        return newTree;
     }
 
     private GameObject ChooseTree(float lat, float lon)
@@ -80,6 +96,18 @@ public class TreeSpawn : MonoBehaviour
     private float TreePerlineNoise(float lat, float lon)
     {
         return Mathf.PerlinNoise(lat / 10, lon / 10) * Mathf.PerlinNoise(lat / 20, lon / 20) * (Mathf.PerlinNoise(lat / 5, lon / 5) + .5f);
+    }
+
+    private void Update()
+    {
+        var pool = updatePools[poolTurnNumber];
+
+        foreach (var tree in pool)
+        {
+            tree.GetComponent<TreeVisualUpdate>().TreeUpdate();
+        }
+
+        poolTurnNumber = (poolTurnNumber + 1) % UpdatePoolNumber;
     }
 }
 
