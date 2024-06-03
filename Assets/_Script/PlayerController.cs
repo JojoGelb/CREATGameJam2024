@@ -1,3 +1,4 @@
+using _Script;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +19,9 @@ public class PlayerController : MonoBehaviour
     private float jumpTimer = 10000;
 
     public float rotationSpeed;
+
+    public float pollutionSlowDown = 2f;
+    private bool slowed = false;
 
     void Start()
     {
@@ -43,11 +47,30 @@ public class PlayerController : MonoBehaviour
         Vector2 moveInput = InputManager.Instance.GetMovementVectorNormalized();
         moveDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
         jumpTimer += Time.deltaTime;
+
+        int r = (int)(GetColorAtPosition().r * 10);
+        Debug.Log("R: " + r);
+        if (r == 3)
+        {
+            if (!slowed)
+            {
+                moveSpeed -= pollutionSlowDown;
+                slowed = true;
+            }
+        }
+        else
+        {
+            if (slowed)
+            {
+                moveSpeed += pollutionSlowDown;
+                slowed = false;
+            }
+        }
     }
 
     void FixedUpdate()
     {
-        if(moveDir != Vector3.zero)
+        if (moveDir != Vector3.zero)
         {
             float angle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
             float initialAngle = transform.GetChild(0).localRotation.eulerAngles.y;
@@ -58,4 +81,27 @@ public class PlayerController : MonoBehaviour
         }
         rb.MovePosition(rb.position + transform.TransformDirection(moveDir) * moveSpeed * Time.fixedDeltaTime);
     }
+
+    public LayerMask layer;
+    public Color GetColorAtPosition()
+    {
+        RaycastHit hit;
+        if (!Physics.Raycast(transform.position + transform.up * 10,-transform.up, out hit,Mathf.Infinity ,1<<7 ))
+        {
+            Debug.Log("Not found");
+            return Color.white;
+        }
+            
+
+        if(!hit.transform.TryGetComponent(out PollutionManager po))
+        {
+            Debug.Log("Wrong collided: " + hit.transform.name);
+            return Color.white;
+        } else
+        {
+            Debug.Log("Hit right dude");
+            return po.GetColorAtPosition(hit);
+        }
+    }
+
 }

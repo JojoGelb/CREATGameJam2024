@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using _Script.Utilities;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace _Script
 {
@@ -145,5 +146,17 @@ namespace _Script
 
             return pixelColored / pixels.Length;
         }
+
+        public Color GetColorAtPosition(RaycastHit hit)
+        {
+            Vector2 pixelUV = hit.textureCoord;
+            pixelUV.x *= texture2D.width;
+            pixelUV.y *= texture2D.height;
+
+            return texture2D.GetPixel((int)pixelUV.x, (int)pixelUV.y);
+        }
+
     }
+
+
 }
