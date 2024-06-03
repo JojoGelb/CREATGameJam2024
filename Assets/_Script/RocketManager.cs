@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class RocketManager : MonoBehaviour
+public class RocketManager : Singleton<RocketManager>
 {
 
     public GameObject RocketPrefab;
@@ -11,7 +12,7 @@ public class RocketManager : MonoBehaviour
 
     //public AnimationCurve SpawnSpeedCurveMultiplier;
 
-    public float InitialRocketSpawnInterval = 5;
+    [FormerlySerializedAs("InitialRocketSpawnInterval")] public float SpawnInterval = 5;
 
 
     
@@ -32,7 +33,7 @@ public class RocketManager : MonoBehaviour
         
         g.GetComponent<Rocket>().started = true;
 
-        Invoke(nameof(SpawnRocket),InitialRocketSpawnInterval + InitialRocketSpawnInterval);
+        Invoke(nameof(SpawnRocket),SpawnInterval + SpawnInterval);
         
     }
 

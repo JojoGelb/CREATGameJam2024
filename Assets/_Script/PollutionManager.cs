@@ -15,6 +15,9 @@ namespace _Script
         private RenderTexture renderTexture; // La RenderTexture à modifier
         private Texture2D texture2D; // La texture 2D utilisée pour lire et écrire les pixels
 
+        public int FramesBetweenDilatationPass;
+
+
         // Tableau utilisé pour stocker des données de la propagation de pollution
         private ushort[] dataArray;
 
@@ -39,7 +42,7 @@ namespace _Script
                 texture2D.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
             }
 
-            if (frame % 200 != 0)
+            if (frame % FramesBetweenDilatationPass != 0)
             {
                 return;
             }
