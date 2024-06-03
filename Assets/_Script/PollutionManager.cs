@@ -28,7 +28,7 @@ namespace _Script
             RenderTexture currentActiveRT = RenderTexture.active;
 
             frame++;
-            if (frame % 100 != 0)
+            if (frame % 20 != 0)
             {
                 return;
             }
@@ -74,7 +74,7 @@ namespace _Script
                 toVisit_x.Enqueue((ushort)fact.x);
                 toVisit_y.Enqueue((ushort)fact.y);
 
-                Debug.Log(fact.x + ", " + fact.y);
+                //Debug.Log(fact.x + ", " + fact.y);
 
                 while (toVisit_x.Count != 0)
                 {
@@ -83,7 +83,11 @@ namespace _Script
 
                     // HANDLE CURRENT CELL
                     var color = pixels[x + l * y];
-                    if (color == VOID)
+
+                    var isTansparent = color == VOID;
+                    var isSemiTransparent = color != VOID && color.a != 255;
+
+                    if (isTansparent || isSemiTransparent)
                     {
                         // No pollution
                         pixels[x + l * y] = new Color32(
@@ -92,6 +96,10 @@ namespace _Script
                             (byte)(PollutionColor.b * 255),
                             255
                         );
+                    }
+
+                    if (isTansparent)
+                    {
                         states[x, y] = NEWLY_POLLUTED;
                     }
                     else
@@ -104,7 +112,7 @@ namespace _Script
                         HandleLinkedCell(dx, y);
 
                         // RIGHT
-                        dx = (x == l-1) ? (ushort)(0) : (ushort)(x+1);
+                        dx = (x == l - 1) ? (ushort)(0) : (ushort)(x + 1);
                         HandleLinkedCell(dx, y);
 
                         // TOP
@@ -112,7 +120,7 @@ namespace _Script
                         HandleLinkedCell(x, dy);
 
                         // BOTTOM
-                        dy = (y == l-1) ? (ushort)(0) : (ushort)(y + 1);
+                        dy = (y == l - 1) ? (ushort)(0) : (ushort)(y + 1);
                         HandleLinkedCell(x, dy);
                     }
                 }
