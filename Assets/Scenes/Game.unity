@@ -718,7 +718,7 @@ PrefabInstance:
       objectReference: {fileID: 4711208715938537054, guid: 3e129eb709cba2a40b8261a381f8bc8b, type: 3}
     - target: {fileID: 5965644493784589296, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
       propertyPath: FramesBetweenDilatationPass
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6376922797631643633, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
       propertyPath: m_Materials.Array.data[0]
