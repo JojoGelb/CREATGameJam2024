@@ -50,8 +50,8 @@ public class PlayerController : MonoBehaviour
         moveDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
         jumpTimer += Time.deltaTime;
 
-        int r = (int)(GetColorAtPosition().r * 10);
-        if (r == 3)
+        //float alpha = (int)GetColorAtPosition().a;
+        if (GetColorAtPosition() != Color.clear)
         {
             if (!slowed)
             {
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Not found");
             return new Color(0,0,0,0);
         }
-            
+
 
         if(!hit.transform.TryGetComponent(out PollutionManager po))
         {

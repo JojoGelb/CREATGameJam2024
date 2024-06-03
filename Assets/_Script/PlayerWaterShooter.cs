@@ -48,18 +48,13 @@ public class PlayerWaterShooter : MonoBehaviour
 
             // Use raycasting to measure distance between nozzle and impact
             RaycastHit hit;
-            if (Physics.Raycast(AimDirection.position, AimDirection.up, out hit, 25) && hit.collider.gameObject != Planet)
+            if (Physics.Raycast(AimDirection.position, AimDirection.up, out hit, 25) && hit.collider.gameObject != Planet && hit.collider.transform != transform)
             {
-                //if (hit.collider.TryGetComponent(out Paintable paintableObject))
-                //{
-                //    PaintManager.Instance.Erase(paintableObject, hit.point, WashingRadius, EraseFeather);
-                //}
-                
                 waterGunParticleSystem.SetFloat("Obstacle distance", hit.distance);
             }
             else
             {
-                waterGunParticleSystem.SetFloat("Obstacle distance", -10f);
+                waterGunParticleSystem.SetFloat("Obstacle distance", -100f);
             }
         }
     }
