@@ -30,7 +30,6 @@ public class HealthBarScript : MonoBehaviour
         {
             float health = PollutionManager.Instance.GetPercentageTextureFilled();
             slider.DOValue(health, 1);
-            Debug.Log(health);
             if(health > lostPercentage)
             {
                 break;

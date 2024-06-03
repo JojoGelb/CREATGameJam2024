@@ -17,7 +17,7 @@ namespace _Script
         void Start()
         {
             renderTexture = GetComponent<Paintable>().getSupport();
-            texture2D = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
+            texture2D = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, 6, false);
         }
 
         void Update()
@@ -43,7 +43,7 @@ namespace _Script
         void ModifyTexture(Texture2D texture)
         {
             // Exemple simple de modification des pixels : inverser les couleurs
-            Color[] pixels1D = texture.GetPixels();
+            var pixels1D = texture.GetPixelData<Color32>(0);
             //for (int i = 0; i < pixels.Length; i++)
             //{
             //    pixels[i] = new Color(1 - pixels[i].r, 1 - pixels[i].g, 1 - pixels[i].b, pixels[i].a);
@@ -63,7 +63,7 @@ namespace _Script
             // 1D to 2D
             //Color[,] pixels2D = new Color[texture.width, texture.height];
             //int[,] visitStates = new int[texture.width, texture.height];
-//
+            //
             //for (int y = 0; y < texture.height; y++)
             //{
             //    for (int x = 0; x < texture.width; x++)
@@ -95,8 +95,8 @@ namespace _Script
             //        pixels1D[y * texture.width + x] = pixels2D[x, y];
             //    }
             //}
-
-            texture.SetPixels(pixels1D);
+            //texture.SetPixelData(pixels1D);
+            //texture.SetPixels(pixels1D);
             texture.Apply();
         }
 
@@ -125,7 +125,9 @@ namespace _Script
         public float GetPercentageTextureFilled()
         {
             if (texture2D == null) return 0;
-            Color[] pixels = texture2D.GetPixels();
+            //Color[] pixels = texture2D.GetPixels();
+
+            var pixels = texture2D.GetPixelData<Color32>(5);
 
             float pixelColored = 0;
 
