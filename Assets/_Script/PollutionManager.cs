@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using _Script.Utilities;
 using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Debug = UnityEngine.Debug;
 
 namespace _Script
 {
@@ -37,7 +40,8 @@ namespace _Script
 
             frame++;
 
-            if(frame % 20 != 0) {
+            if (frame % 20 != 0 || frame % FramesBetweenDilatationPass != 0)
+            {
                 RenderTexture.active = renderTexture;
                 texture2D.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
             }
@@ -47,9 +51,6 @@ namespace _Script
                 return;
             }
 
-
-            //texture2D.Apply();
-
             DilutePollution();
             ApplyTexture();
 
@@ -58,6 +59,10 @@ namespace _Script
 
         void DilutePollution()
         {
+            // DEBUG - MESUREMENT START
+            //Stopwatch stopwatch = new Stopwatch();
+            //stopwatch.Start();
+
             // -----------------
             // DATA SETUP
             // -----------------
@@ -66,113 +71,113 @@ namespace _Script
 
             List<OilPipeGameplay> factories = OilPipeManager.Instance?.GetOliPipesInGame();
 
-            //var states = new byte[l, l];
             byte NO_VISITED = 0, ALREADY_PROCESSED = 1, NEWLY_POLLUTED = 2, IN_QUEUE = 3;
 
-            Queue<ushort> toVisit_x = new Queue<ushort>();
-            Queue<ushort> toVisit_y = new Queue<ushort>();
+
+
+            var pollutionColor = new Color32(
+                (byte)(PollutionColor.r * 255),
+                (byte)(PollutionColor.g * 255),
+                (byte)(PollutionColor.b * 255),
+                255
+            );
 
             // -----------------
             // ALGO
             // -----------------
             if (factories == null) return;
-            foreach (OilPipeGameplay factory in factories)
-            {
-                Vector2 fact = GetTextureCoordsOnPlanet(factory.transform.position);
-                //if (states[(ushort)fact.x, (ushort)fact.y] == ALREADY_PROCESSED)
-                if (dataArray[(int)(fact.x + l * fact.y)] == ALREADY_PROCESSED)
-                    continue;
-                toVisit_x.Enqueue((ushort)fact.x);
-                toVisit_y.Enqueue((ushort)fact.y);
 
-                //Debug.Log(fact.x + ", " + fact.y);
-
-                while (toVisit_x.Count != 0)
+            var options = new ParallelOptions { MaxDegreeOfParallelism = -1 };
+            Parallel.ForEach(factories, options, factory =>
                 {
-                    ushort x = toVisit_x.Dequeue();
-                    ushort y = toVisit_y.Dequeue();
+                    Queue<ushort> toVisit_x = new Queue<ushort>();
+                    Queue<ushort> toVisit_y = new Queue<ushort>();
 
-                    // HANDLE CURRENT CELL
-                    var color = pixels[x + l * y];
+                    Vector2 fact = factory.GetCoordsOnPlanetTexture;
+                    if (dataArray[(int)(fact.x + l * fact.y)] == ALREADY_PROCESSED)
+                        return;
+                    toVisit_x.Enqueue((ushort)fact.x);
+                    toVisit_y.Enqueue((ushort)fact.y);
 
-                    var isTansparent = color.a == 0;
-                    var isSemiTransparent = color.a != 0 && color.a < 150;
-
-                    if (isTansparent || isSemiTransparent)
+                    while (toVisit_x.Count != 0)
                     {
-                        // No pollution
-                        pixels[x + l * y] = new Color32(
-                            (byte)(PollutionColor.r * 255),
-                            (byte)(PollutionColor.g * 255),
-                            (byte)(PollutionColor.b * 255),
-                            255
-                        );
+                        ushort x = toVisit_x.Dequeue();
+                        ushort y = toVisit_y.Dequeue();
+
+                        // HANDLE CURRENT CELL
+                        var color = pixels[x + l * y];
+
+                        var isTansparent = color.a == 0;
+                        var isSemiTransparent = color.a != 0 && color.a < 150;
+
+                        if (isTansparent || isSemiTransparent)
+                        {
+                            // No pollution
+                            pixels[x + l * y] = pollutionColor;
+                        }
+
+                        if (isTansparent)
+                        {
+                            dataArray[x + l * y] = NEWLY_POLLUTED;
+                        }
+                        else
+                        {
+                            // Pollution
+                            dataArray[x + l * y] = ALREADY_PROCESSED;
+
+                            // LEFT
+                            ushort dx = (x == 0) ? (ushort)(l - 1) : (ushort)(x - 1);
+                            HandleLinkedCell(dx, y);
+
+                            // RIGHT
+                            dx = (x == l - 1) ? (ushort)(0) : (ushort)(x + 1);
+                            HandleLinkedCell(dx, y);
+
+                            // TOP
+                            ushort dy = (y == 0) ? (ushort)(l - 1) : (ushort)(y - 1);
+                            HandleLinkedCell(x, dy);
+
+                            // BOTTOM
+                            dy = (y == l - 1) ? (ushort)(0) : (ushort)(y + 1);
+                            HandleLinkedCell(x, dy);
+                        }
                     }
 
-                    if (isTansparent)
+                    // ------------------------
+                    // SUB FUNCTION
+                    // ------------------------
+                    void HandleLinkedCell(ushort x, ushort y)
                     {
-                        //states[x, y] = NEWLY_POLLUTED;
-                        dataArray[x + l * y] = NEWLY_POLLUTED;
-                    }
-                    else
-                    {
-                        // Pollution
-                        //states[x, y] = ALREADY_PROCESSED;
-                        dataArray[x + l * y] = ALREADY_PROCESSED;
-
-                        // LEFT
-                        ushort dx = (x == 0) ? (ushort)(l - 1) : (ushort)(x - 1);
-                        HandleLinkedCell(dx, y);
-
-                        // RIGHT
-                        dx = (x == l - 1) ? (ushort)(0) : (ushort)(x + 1);
-                        HandleLinkedCell(dx, y);
-
-                        // TOP
-                        ushort dy = (y == 0) ? (ushort)(l - 1) : (ushort)(y - 1);
-                        HandleLinkedCell(x, dy);
-
-                        // BOTTOM
-                        dy = (y == l - 1) ? (ushort)(0) : (ushort)(y + 1);
-                        HandleLinkedCell(x, dy);
+                        ref ushort state = ref dataArray[x + l * y];
+                        if (state == NO_VISITED)
+                        {
+                            toVisit_x.Enqueue(x);
+                            toVisit_y.Enqueue(y);
+                            state = IN_QUEUE;
+                        }
                     }
                 }
-            }
+            );
+
+
 
             texture2D.Apply();
-
             // ------------------------
             // DATA CLEANUP
             // ------------------------
             Array.Clear(dataArray, 0, dataArray.Length);
 
-            // ------------------------
-            // SUB FUNCTION
-            // ------------------------
-            void HandleLinkedCell(ushort x, ushort y)
-            {
-                //if (states[x, y] == NO_VISITED)
-                if (dataArray[x + l * y] == NO_VISITED)
-                {
-                    toVisit_x.Enqueue(x);
-                    toVisit_y.Enqueue(y);
-                    //states[x, y] = IN_QUEUE;
-                    dataArray[x + l * y] = IN_QUEUE;
-                }
-            }
+
+            // DEBUG - MESUREMENT STOP
+            //stopwatch.Stop();
+            //Debug.Log("DilutePollution execution time: " + stopwatch.ElapsedMilliseconds + " ms");
         }
 
 
         void ApplyTexture()
         {
-            //GetComponent<Renderer>().material.SetTexture("_MaskTexture", texture2D);
-            RenderTexture.active = renderTexture;
-            Graphics.Blit(texture2D, renderTexture);
+            //Graphics.Blit(texture2D, renderTexture);
             Graphics.Blit(texture2D, GetComponent<Paintable>().getSupport());
-            Graphics.Blit(texture2D, GetComponent<Paintable>().getExtend());
-            Graphics.Blit(texture2D, GetComponent<Paintable>().getMask());
-            Graphics.Blit(texture2D, GetComponent<Paintable>().getUVIslands());
-            RenderTexture.active = null;
         }
 
         public float GetPercentageTextureFilled()

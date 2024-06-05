@@ -27,6 +27,9 @@ public class OilPipeGameplay : MonoBehaviour
     public AudioClip landingClip;
     private AudioSource audiosource;
 
+    private Vector2 coordsOnPlanetTexture;
+    public Vector2 GetCoordsOnPlanetTexture => coordsOnPlanetTexture;
+
     private void Awake()
     {
         OilPipeManager.Instance?.AddOilPipe(this);
@@ -38,6 +41,8 @@ public class OilPipeGameplay : MonoBehaviour
         Invoke(nameof(SpawnBubble), timeBetweenBurstOfPoiSon);
         audiosource = GetComponent<AudioSource>();
         audiosource.PlayOneShot(landingClip);
+
+        coordsOnPlanetTexture = PollutionManager.Instance.GetTextureCoordsOnPlanet(this.transform.position);
     }
 
     void SpawnBubble()

@@ -90,7 +90,6 @@ public class PaintManager : Singleton<PaintManager>{
 
     public void Erase(Paintable paintable, Vector3 pos, float radius, float _eraseFeather = .2f){
         RenderTexture mask = paintable.getMask();
-        RenderTexture uvIslands = paintable.getUVIslands();
         RenderTexture extend = paintable.getExtend();
         RenderTexture support = paintable.getSupport();
         Renderer rend = paintable.getRenderer();
@@ -101,7 +100,7 @@ public class PaintManager : Singleton<PaintManager>{
         eraseMaterial.SetTexture(textureID, support); // _MainTex !!!!!!!!!!!!!!
         eraseMaterial.SetColor(colorID, Color.red);
 
-        // CALCUL MASQUE A PARTIR DU TAMPON (TexturePainter.shader)
+        // CALCUL MASQUE A PARTIR DU TAMPON (TextureEraser.shader)
         command.SetRenderTarget(mask);
         command.DrawRenderer(rend, eraseMaterial, 0);
 
