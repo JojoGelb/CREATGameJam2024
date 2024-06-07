@@ -407,8 +407,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 6573244100216597132}
+  fillBar: {fileID: 0}
   UpdateRateInSeconds: 0.2
-  lostPercentage: 0.9
+  lostPercentage: 0.67
+  DangerousPercentage: 0.45
 --- !u!1 &7632277839758585019
 GameObject:
   m_ObjectHideFlags: 0

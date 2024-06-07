@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4198513784748404383}
   - component: {fileID: 1753803380438962372}
   - component: {fileID: 8277466162864724428}
+  - component: {fileID: 9199906440160815425}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -74,6 +75,18 @@ MonoBehaviour:
   radius: 5
   strength: 0.5
   hardness: 0.1
+--- !u!114 &9199906440160815425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139515889633615545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0007442cb74f9999def0d891a3b95d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3148440949640810590
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RocketPrefab: {fileID: 5905176634983309277, guid: c4f56fcd7647c2241ac89d155334873d, type: 3}
   spawnRadius: 20
-  InitialRocketSpawnInterval: 5
+  SpawnInterval: 5
 --- !u!1 &5845145490960483805
 GameObject:
   m_ObjectHideFlags: 0

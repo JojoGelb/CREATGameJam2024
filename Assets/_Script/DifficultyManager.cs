@@ -9,14 +9,16 @@ namespace _Script
         private float lastFrame;
         private float timeBetweenBurstOfPoiSon;
 
+        private float BASE_ROCKET_INTERVAL = 5f;
+        private float BASE_BUBBLES_INTERVAL = 2.5f;
+
         public float GetTimeBetweenBurstOfPoiSon() => timeBetweenBurstOfPoiSon;
 
         private void Start()
         {
-            //RocketManager.Instance.SpawnInterval = 5f;
-            //PollutionManager.Instance.FramesBetweenDilatationPass = 150;
-
-            timeBetweenBurstOfPoiSon = 2f;
+            PollutionManager.Instance.FramesBetweenDilatationPass = 75;
+            RocketManager.Instance.SpawnInterval = 5;
+            timeBetweenBurstOfPoiSon = BASE_BUBBLES_INTERVAL;
         }
 
         private void Update()
@@ -25,11 +27,12 @@ namespace _Script
 
             if (Mathf.CeilToInt(timer) % 15 == 0 && Mathf.CeilToInt(lastFrame) % 15 != 0)
             {
-                RocketManager.Instance.SpawnInterval = Mathf.Max(.4f, RocketManager.Instance.SpawnInterval * 0.85f);
-                timeBetweenBurstOfPoiSon = Mathf.Max(.2f, timeBetweenBurstOfPoiSon * .9f);
+                RocketManager.Instance.SpawnInterval =
+                    2 + ((BASE_ROCKET_INTERVAL - 2) * Mathf.Pow(0.93f, (int)(timer / 15)));
 
-                //int tmpDilatationPass = Mathf.CeilToInt(PollutionManager.Instance.FramesBetweenDilatationPass* 0.85f);
-                //PollutionManager.Instance.FramesBetweenDilatationPass = tmpDilatationPass;
+                timeBetweenBurstOfPoiSon =
+                    .5f + ((BASE_BUBBLES_INTERVAL - .5f) * Mathf.Pow(0.93f, (int)(timer / 15)));
+                Debug.Log(timer + " s       : " + timeBetweenBurstOfPoiSon);
             }
 
             lastFrame = timer;

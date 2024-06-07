@@ -12,7 +12,8 @@ public class RocketManager : Singleton<RocketManager>
 
     //public AnimationCurve SpawnSpeedCurveMultiplier;
 
-    public float SpawnInterval = 5;
+
+    [HideInInspector] public float SpawnInterval;
 
 
     
