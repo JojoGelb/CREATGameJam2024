@@ -2,11 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using _Script.Utilities;
-using Unity.Collections;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Rendering;
 using Debug = UnityEngine.Debug;
 
 namespace _Script
@@ -19,7 +15,6 @@ namespace _Script
         private Texture2D texture2D; // La texture 2D utilisée pour lire et écrire les pixels
 
         public int FramesBetweenDilatationPass = 150;
-
 
         // Tableau utilisé pour stocker des données de la propagation de pollution
         private ushort[] dataArray;
@@ -38,11 +33,16 @@ namespace _Script
         {
             RenderTexture currentActiveRT = RenderTexture.active;
 
+            // ----- DEBUG - MESUREMENT START -----
+            //Stopwatch stopwatch = new Stopwatch();
+            //stopwatch.Start();
+
             frame++;
 
             if (frame % 20 != 0 || frame % FramesBetweenDilatationPass != 0)
             {
                 RenderTexture.active = renderTexture;
+                GL.Flush();
                 texture2D.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
             }
 
@@ -57,14 +57,13 @@ namespace _Script
             Graphics.Blit(texture2D, renderTexture);
 
             RenderTexture.active = currentActiveRT;
+            // -------  DEBUG - MESUREMENT STOP ---------
+            //stopwatch.Stop();
+            //Debug.Log("DilutePollution execution time: " + stopwatch.ElapsedMilliseconds + " ms");
         }
 
         void DilutePollution()
         {
-            // DEBUG - MESUREMENT START
-            //Stopwatch stopwatch = new Stopwatch();
-            //stopwatch.Start();
-
             // -----------------
             // DATA SETUP
             // -----------------
@@ -115,7 +114,7 @@ namespace _Script
                             pixels[x + l * y] = pollutionColor;
                         }
 
-                        if (isTansparent)
+                        if (isTansparent || isSemiTransparent)
                         {
                             dataArray[x + l * y] = NEWLY_POLLUTED;
                         }
@@ -133,12 +132,16 @@ namespace _Script
                             HandleLinkedCell(dx, y);
 
                             // TOP
-                            ushort dy = (y == 0) ? (ushort)(l - 1) : (ushort)(y - 1);
-                            HandleLinkedCell(x, dy);
+                            if (y != 0)
+                            {
+                                HandleLinkedCell(x, (ushort)(y - 1));
+                            }
 
                             // BOTTOM
-                            dy = (y == l - 1) ? (ushort)(0) : (ushort)(y + 1);
-                            HandleLinkedCell(x, dy);
+                            if (y != l - 1)
+                            {
+                                HandleLinkedCell(x, (ushort)(y + 1));
+                            }
                         }
                     }
 
@@ -163,11 +166,6 @@ namespace _Script
             // DATA CLEANUP
             // ------------------------
             Array.Clear(dataArray, 0, dataArray.Length);
-
-
-            // DEBUG - MESUREMENT STOP
-            //stopwatch.Stop();
-            //Debug.Log("DilutePollution execution time: " + stopwatch.ElapsedMilliseconds + " ms");
         }
 
         public float GetPercentageTextureFilled()

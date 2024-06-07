@@ -1,3 +1,4 @@
+using _Script;
 using UnityEngine;
 using UnityEngine.Rendering;
 
