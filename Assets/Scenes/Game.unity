@@ -713,6 +713,22 @@ PrefabInstance:
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5965644493784589296, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
+      propertyPath: PollutionColor.a
+      value: 0.92156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 5965644493784589296, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
+      propertyPath: PollutionColor.b
+      value: 0.32941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 5965644493784589296, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
+      propertyPath: PollutionColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5965644493784589296, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
+      propertyPath: PollutionColor.r
+      value: 0.36862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 5965644493784589296, guid: e42ef8aaa27f35040a198e95e24b0260, type: 3}
       propertyPath: FramesBetweenDilatationPass
       value: 100
       objectReference: {fileID: 0}

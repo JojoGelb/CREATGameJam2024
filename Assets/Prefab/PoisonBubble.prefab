@@ -162,4 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PoisonRadiusOnSpawn: 1
-  PaintColor: {r: 0.59225947, g: 0.19215685, b: 1, a: 1}
+  PaintColor: {r: 0.36862746, g: 0, b: 0.32941177, a: 0.9490196}

@@ -29,7 +29,7 @@ namespace _Script
         void Start()
         {
             renderTexture = GetComponent<Paintable>().getSupport();
-            texture2D = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, 6, false);
+            texture2D = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGBA32, 6, false);
 
             dataArray = new ushort[renderTexture.width * renderTexture.height];
         }
@@ -52,7 +52,9 @@ namespace _Script
             }
 
             DilutePollution();
-            ApplyTexture();
+
+            texture2D.Apply();
+            Graphics.Blit(texture2D, renderTexture);
 
             RenderTexture.active = currentActiveRT;
         }
@@ -70,10 +72,7 @@ namespace _Script
             ushort l = (ushort)Math.Sqrt(pixels.Length);
 
             List<OilPipeGameplay> factories = OilPipeManager.Instance?.GetOliPipesInGame();
-
             byte NO_VISITED = 0, ALREADY_PROCESSED = 1, NEWLY_POLLUTED = 2, IN_QUEUE = 3;
-
-
 
             var pollutionColor = new Color32(
                 (byte)(PollutionColor.r * 255),
@@ -160,8 +159,6 @@ namespace _Script
             );
 
 
-
-            texture2D.Apply();
             // ------------------------
             // DATA CLEANUP
             // ------------------------
@@ -171,13 +168,6 @@ namespace _Script
             // DEBUG - MESUREMENT STOP
             //stopwatch.Stop();
             //Debug.Log("DilutePollution execution time: " + stopwatch.ElapsedMilliseconds + " ms");
-        }
-
-
-        void ApplyTexture()
-        {
-            //Graphics.Blit(texture2D, renderTexture);
-            Graphics.Blit(texture2D, GetComponent<Paintable>().getSupport());
         }
 
         public float GetPercentageTextureFilled()
