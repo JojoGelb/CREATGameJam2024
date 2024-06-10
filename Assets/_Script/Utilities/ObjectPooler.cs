@@ -8,7 +8,8 @@ public class ObjectPooler : Singleton<ObjectPooler>
     {
         Sound = 0,
         Arrow = 1,
-        PoisonBubble = 2
+        PoisonBubble = 2,
+        PowerUpJet = 100,
     }
 
     [System.Serializable]

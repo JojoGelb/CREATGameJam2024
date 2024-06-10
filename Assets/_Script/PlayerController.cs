@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private bool slowed = false;
 
     private float waitTimer = 0;
+
+    public PlayerWaterShooter waterShooter;
     void Start()
     {
         rb = GetComponent<Rigidbody>();

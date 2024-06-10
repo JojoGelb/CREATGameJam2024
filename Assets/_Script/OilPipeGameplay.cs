@@ -75,11 +75,19 @@ public class OilPipeGameplay : MonoBehaviour
                 DestroyAfterTime(20f);
                 if (removedFromOilManager)
                     return;
+
+                SpawnPowerUp();
                 removedFromOilManager=true;
                 audiosource.PlayOneShot(explosionClip);
                 OilPipeManager.Instance?.RemoveOilPipe(this);
             }
         }
+    }
+
+    private void SpawnPowerUp()
+    {
+        GameObject g = ObjectPooler.Instance.GetOrCreateGameObjectFromPool(ObjectPooler.PoolObject.PowerUpJet);
+        g.transform.position = transform.position;
     }
 
     private IEnumerator DestroyAfterTime(float time)

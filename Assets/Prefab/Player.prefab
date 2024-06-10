@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8170422642476593097}
   - component: {fileID: 2078970245185655949}
   - component: {fileID: 4219346425270804424}
+  - component: {fileID: 2024261907526784683}
   m_Layer: 0
   m_Name: WaterGunVisualEffect
   m_TagString: WaterGun
@@ -113,12 +114,41 @@ MonoBehaviour:
   waterGunParticleSystem: {fileID: 9131806140207758668}
   playerRb: {fileID: 4038544361082674672}
   visualTransform: {fileID: 1804414061683382673}
-  force: 3
-  WashingRadius: 0.2
+  KnockBackForce: 2
   DistanceFromPlayer: 0.5
-  MaxWashingDistance: 2
   EraseFeather: 0.2
-  removeMoveSpeedWhenShooting: 0
+  currentWaterJetParameterIndex: 0
+  WaterJetParameters:
+  - name: +0
+    WashingRadius: 0.2
+    MaxWashingDistance: 2
+    MinRadius: 0.01
+    CircleSpawnIterationNumber: 10
+  - name: +1
+    WashingRadius: 0.5
+    MaxWashingDistance: 2
+    MinRadius: 0.01
+    CircleSpawnIterationNumber: 10
+  - name: +2
+    WashingRadius: 1
+    MaxWashingDistance: 3
+    MinRadius: 0.01
+    CircleSpawnIterationNumber: 10
+  - name: +3
+    WashingRadius: 1.5
+    MaxWashingDistance: 3
+    MinRadius: 0.01
+    CircleSpawnIterationNumber: 10
+  - name: +4
+    WashingRadius: 2
+    MaxWashingDistance: 3
+    MinRadius: 0.01
+    CircleSpawnIterationNumber: 10
+  - name: +5
+    WashingRadius: 3
+    MaxWashingDistance: 4
+    MinRadius: 0.01
+    CircleSpawnIterationNumber: 10
   playerController: {fileID: 1020506519072118147}
   AimDirection: {fileID: 1019477733470802358}
   Planet: {fileID: 0}
@@ -162,6 +192,102 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!82 &2024261907526784683
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486308373343913817}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 4315126484616451171, guid: 879ccef23fa660c4e82d59d1faa32496, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 110b173eeb55cb44eb076e55cbc04e49, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.363
+  m_Pitch: -3
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1126211012178581329
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,6 +606,7 @@ MonoBehaviour:
   jumpCD: 1.5
   rotationSpeed: 400
   pollutionSlowDown: 2
+  waterShooter: {fileID: 2078970245185655949}
   layer:
     serializedVersion: 2
     m_Bits: 0
