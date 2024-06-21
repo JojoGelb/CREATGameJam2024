@@ -7,7 +7,7 @@ using UnityEngine.VFX;
 
 public class OilPipeGameplay : MonoBehaviour
 {
-    public float WateringTimeToDestroy = 2f;
+    private float WateringTimeToDestroy = 2f;
     private float wateredTime = 0f;
 
     private bool isBeingWatered = false;
@@ -27,7 +27,8 @@ public class OilPipeGameplay : MonoBehaviour
     public AudioClip landingClip;
 
     [Range(0,100)]
-    public int ChanceToSpawnPowerUp = 50;
+    public int MaxChanceToSpawnPowerUp = 50;
+    private static int currentChanceToSpawnPowerUp = 0;
     private AudioSource audiosource;
 
     private Vector2 coordsOnPlanetTexture;
@@ -37,6 +38,10 @@ public class OilPipeGameplay : MonoBehaviour
     {
         OilPipeManager.Instance?.AddOilPipe(this);
         Watered.Stop();
+
+        if(currentChanceToSpawnPowerUp == 0) {
+            currentChanceToSpawnPowerUp = MaxChanceToSpawnPowerUp;
+        }
     }
 
     private void Start()
@@ -92,10 +97,12 @@ public class OilPipeGameplay : MonoBehaviour
     public float powerUpEjectionForceRandomAdded = 0.5f;
     private void SpawnPowerUp()
     {
-        if(! (Random.Range(0,100) < ChanceToSpawnPowerUp))
+        if(! (Random.Range(0,100) < currentChanceToSpawnPowerUp))
         {
+            currentChanceToSpawnPowerUp += 5;
             return;
         }
+        currentChanceToSpawnPowerUp = MaxChanceToSpawnPowerUp;
         GameObject g = ObjectPooler.Instance.GetOrCreateGameObjectFromPool(ObjectPooler.PoolObject.PowerUpJet);
         Vector3 direction = transform.position - PollutionManager.Instance.transform.position;
         direction.Normalize();
@@ -120,6 +127,7 @@ public class OilPipeGameplay : MonoBehaviour
     {
         if (other.gameObject.tag != "WaterGun") return;
         isBeingWatered=true;
+        WateringTimeToDestroy = other.gameObject.GetComponent<PlayerWaterShooter>().TimeToDestroyPipe;
         Watered.Play();
     }
 

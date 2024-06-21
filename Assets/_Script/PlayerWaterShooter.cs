@@ -13,6 +13,7 @@ public struct WaterJetParameters
     public float MaxWashingDistance;
     public float MinRadius;
     public int CircleSpawnIterationNumber;
+    public float TimeToDestroyPipe;
 }
 
 public class PlayerWaterShooter : MonoBehaviour
@@ -54,6 +55,8 @@ public class PlayerWaterShooter : MonoBehaviour
     private GameObject Planet;
 
     private AudioSource soundEffect;
+
+    public float TimeToDestroyPipe = 2f;
 
     private void Start()
     {
@@ -124,9 +127,6 @@ public class PlayerWaterShooter : MonoBehaviour
         }
     }
 
-    //private float minRadius = 0.01f;
-    //private float n = 10;
-
     private void OnTriggerStay(Collider collider)
     {
         if (collider.TryGetComponent(out Paintable paintableObject))
@@ -163,5 +163,6 @@ public class PlayerWaterShooter : MonoBehaviour
         else if (index >= WaterJetParameters.Count) index = WaterJetParameters.Count - 1;
 
         currentWaterJetParameterIndex = index;
+        TimeToDestroyPipe = WaterJetParameters[currentWaterJetParameterIndex].TimeToDestroyPipe;
     }
 }

@@ -1142,6 +1142,30 @@ PrefabInstance:
       propertyPath: Planet
       value: 
       objectReference: {fileID: 1167127708}
+    - target: {fileID: 2078970245185655949, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      propertyPath: WaterJetParameters.Array.data[0].TimeToDestroyPipe
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078970245185655949, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      propertyPath: WaterJetParameters.Array.data[1].TimeToDestroyPipe
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078970245185655949, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      propertyPath: WaterJetParameters.Array.data[2].TimeToDestroyPipe
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078970245185655949, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      propertyPath: WaterJetParameters.Array.data[3].TimeToDestroyPipe
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078970245185655949, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      propertyPath: WaterJetParameters.Array.data[4].TimeToDestroyPipe
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078970245185655949, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      propertyPath: WaterJetParameters.Array.data[5].TimeToDestroyPipe
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 5768977114072674001, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
       propertyPath: m_Name
       value: Player

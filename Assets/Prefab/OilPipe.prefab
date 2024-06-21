@@ -441,7 +441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301178ff25c50974eb66c66f36b6aba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WateringTimeToDestroy: 2
   Explosion: {fileID: 5680657929204367570}
   Watered: {fileID: 8158114748029037072}
   maxForceBubble: {x: 2, y: 2, z: 2}
@@ -449,7 +448,7 @@ MonoBehaviour:
   BubbleSpawnPosition: {fileID: 4263842003407088126}
   explosionClip: {fileID: 8300000, guid: a52d09006a6fd5a4c99bfb65803a6db9, type: 3}
   landingClip: {fileID: 8300000, guid: 0a8d7718be715b34f840237adaaae112, type: 3}
-  ChanceToSpawnPowerUp: 5
+  MaxChanceToSpawnPowerUp: 5
   powerUpEjectionForce: 2
   powerUpEjectionForceRandomAdded: 1
 --- !u!54 &1055420701938927362
