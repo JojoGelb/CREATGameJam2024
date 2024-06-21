@@ -25,6 +25,9 @@ public class OilPipeGameplay : MonoBehaviour
 
     public AudioClip explosionClip;
     public AudioClip landingClip;
+
+    [Range(0,100)]
+    public int ChanceToSpawnPowerUp = 50;
     private AudioSource audiosource;
 
     private Vector2 coordsOnPlanetTexture;
@@ -84,10 +87,27 @@ public class OilPipeGameplay : MonoBehaviour
         }
     }
 
+
+    public float powerUpEjectionForce = 10;
+    public float powerUpEjectionForceRandomAdded = 0.5f;
     private void SpawnPowerUp()
     {
+        if(! (Random.Range(0,100) < ChanceToSpawnPowerUp))
+        {
+            return;
+        }
         GameObject g = ObjectPooler.Instance.GetOrCreateGameObjectFromPool(ObjectPooler.PoolObject.PowerUpJet);
-        g.transform.position = transform.position;
+        Vector3 direction = transform.position - PollutionManager.Instance.transform.position;
+        direction.Normalize();
+        g.transform.position = transform.position + direction * 0.5f;
+        direction.x += Random.Range(-powerUpEjectionForceRandomAdded, powerUpEjectionForceRandomAdded);
+        direction.y += Random.Range(-powerUpEjectionForceRandomAdded, powerUpEjectionForceRandomAdded);
+        direction.z += Random.Range(-powerUpEjectionForceRandomAdded, powerUpEjectionForceRandomAdded);
+        direction.Normalize();
+
+        direction *= powerUpEjectionForce;
+
+        g.GetComponent<Rigidbody>().AddForce(direction, ForceMode.VelocityChange);
     }
 
     private IEnumerator DestroyAfterTime(float time)
