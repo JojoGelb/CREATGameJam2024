@@ -25,13 +25,18 @@ namespace _Script
         {
             timer = ScoreTimer.Instance.timer;
 
+            float MIN_ROCKET_INTERVAL = 2f;
+            float MIN_BUBBLES_INTERVAL = .5f;
+
             if (Mathf.CeilToInt(timer) % 15 == 0 && Mathf.CeilToInt(lastFrame) % 15 != 0)
             {
                 RocketManager.Instance.SpawnInterval =
-                    2 + ((BASE_ROCKET_INTERVAL - 2) * Mathf.Pow(0.93f, (int)(timer / 15)));
+                    MIN_ROCKET_INTERVAL + ((BASE_ROCKET_INTERVAL - MIN_ROCKET_INTERVAL) *
+                                           Mathf.Pow(0.93f, (int)(timer / 15)));
 
                 timeBetweenBurstOfPoiSon =
-                    .5f + ((BASE_BUBBLES_INTERVAL - .5f) * Mathf.Pow(0.93f, (int)(timer / 15)));
+                    MIN_BUBBLES_INTERVAL + ((BASE_BUBBLES_INTERVAL - MIN_BUBBLES_INTERVAL) *
+                                            Mathf.Pow(0.93f, (int)(timer / 15)));
                 Debug.Log(timer + " s       : " + timeBetweenBurstOfPoiSon);
             }
 

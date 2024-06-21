@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using _Script;
+using _Script.Managers;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 
 public class OilPipeGameplay : MonoBehaviour
@@ -87,6 +89,10 @@ public class OilPipeGameplay : MonoBehaviour
                 SpawnPowerUp();
                 removedFromOilManager=true;
                 audiosource.PlayOneShot(explosionClip);
+
+                VibrationManager.Instance!.StopOilPipeBeingShoot();
+                VibrationManager.Instance!.PlayOilPipeDestructed();
+
                 OilPipeManager.Instance?.RemoveOilPipe(this);
             }
         }
@@ -129,6 +135,8 @@ public class OilPipeGameplay : MonoBehaviour
         isBeingWatered=true;
         WateringTimeToDestroy = other.gameObject.GetComponent<PlayerWaterShooter>().TimeToDestroyPipe;
         Watered.Play();
+
+        VibrationManager.Instance.StartOilPipeBeingShoot();
     }
 
     public void WaterGunDisabled()
@@ -142,6 +150,7 @@ public class OilPipeGameplay : MonoBehaviour
         if (other.gameObject.tag != "WaterGun") return;
         isBeingWatered =false;
         Watered.Stop();
+        VibrationManager.Instance.StopOilPipeBeingShoot();
     }
 
     /*private void OnParticleCollision(GameObject other)

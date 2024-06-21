@@ -10,6 +10,8 @@ public class InputManager : Singleton<InputManager>
 {
     private PlayerControls playerInputAction;
 
+    public PlayerControls GetPlayerControls() => playerInputAction;
+
     //public static event Action<InputActionMap> actionMapChange;
 
 

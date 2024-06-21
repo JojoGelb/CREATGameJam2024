@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Script.Managers;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.VFX;
 
@@ -18,41 +20,30 @@ public struct WaterJetParameters
 
 public class PlayerWaterShooter : MonoBehaviour
 {
-    [SerializeField]
-    private VisualEffect waterGunParticleSystem;
+    [SerializeField] private VisualEffect waterGunParticleSystem;
 
-    [SerializeField]
-    private Rigidbody playerRb;
-    [SerializeField]
-    private Transform visualTransform;
-    [SerializeField]
-    private float KnockBackForce = 2;
+    [SerializeField] private Rigidbody playerRb;
+    [SerializeField] private Transform visualTransform;
+    [SerializeField] private float KnockBackForce = 2;
 
-    [SerializeField]
-    private float DistanceFromPlayer;
-    [SerializeField]
-    private float EraseFeather;
+    [SerializeField] private float DistanceFromPlayer;
+    [SerializeField] private float EraseFeather;
 
-    [SerializeField]
-    private int currentWaterJetParameterIndex = 0;
+    [SerializeField] private int currentWaterJetParameterIndex = 0;
 
-    [SerializeField]
-    private List<WaterJetParameters> WaterJetParameters = new List<WaterJetParameters>();
+    [SerializeField] private List<WaterJetParameters> WaterJetParameters = new List<WaterJetParameters>();
 
-    [Header("Fooling around with jet knockback")]
-
-    [SerializeField]
+    [Header("Fooling around with jet knockback")] [SerializeField]
     private PlayerController playerController;
+
     private float baseMovespeed;
 
     bool isShooting = false;
 
     List<OilPipeGameplay> oilPipeGameplays = new List<OilPipeGameplay>();
 
-    [SerializeField]
-    private Transform AimDirection;
-    [SerializeField]
-    private GameObject Planet;
+    [SerializeField] private Transform AimDirection;
+    [SerializeField] private GameObject Planet;
 
     private AudioSource soundEffect;
 
@@ -76,7 +67,8 @@ public class PlayerWaterShooter : MonoBehaviour
 
 
             // Use raycasting to measure distance between nozzle and impact
-            if (Physics.Raycast(AimDirection.position, AimDirection.up, out RaycastHit hit, 25) && hit.collider.gameObject != Planet && hit.collider.transform != transform)
+            if (Physics.Raycast(AimDirection.position, AimDirection.up, out RaycastHit hit, 25) &&
+                hit.collider.gameObject != Planet && hit.collider.transform != transform)
             {
                 waterGunParticleSystem.SetFloat("Obstacle distance", hit.distance);
             }
@@ -101,6 +93,8 @@ public class PlayerWaterShooter : MonoBehaviour
 
         isShooting = true;
         soundEffect.Play();
+
+        VibrationManager.Instance.UpdateLastInput();
     }
 
     private void OnFireCanceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -117,6 +111,7 @@ public class PlayerWaterShooter : MonoBehaviour
         playerController.moveSpeed = baseMovespeed;
         oilPipeGameplays.Clear();
         soundEffect.Stop();
+        Gamepad.current.SetMotorSpeeds(0f, 0f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -132,25 +127,21 @@ public class PlayerWaterShooter : MonoBehaviour
         if (collider.TryGetComponent(out Paintable paintableObject))
         {
             var collisionPoint = collider.ClosestPoint(visualTransform.position);
-            
+
             float minRadius = WaterJetParameters[currentWaterJetParameterIndex].MinRadius;
             float currentRadius;
             int n = WaterJetParameters[currentWaterJetParameterIndex].CircleSpawnIterationNumber;
             float WashingRadius = WaterJetParameters[currentWaterJetParameterIndex].WashingRadius;
             float MaxWashingDistance = WaterJetParameters[currentWaterJetParameterIndex].MaxWashingDistance;
 
-            Debug.Log("HERE " + minRadius + " " + WashingRadius + " " + MaxWashingDistance);
-
-            for (int i =0 ; i < n; i++)
+            for (int i = 0; i < n; i++)
             {
-
                 currentRadius = Mathf.Lerp(minRadius, WashingRadius, i / (float)n);
 
                 PaintManager.Instance.Erase(paintableObject,
                     collisionPoint + visualTransform.forward * (DistanceFromPlayer + (i * (MaxWashingDistance / n))),
                     currentRadius,
                     EraseFeather);
-
             }
         }
     }
