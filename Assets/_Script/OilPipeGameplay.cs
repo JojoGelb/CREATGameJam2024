@@ -71,6 +71,9 @@ public class OilPipeGameplay : MonoBehaviour
 
     private void Update()
     {
+        if (removedFromOilManager)
+            return;
+
         timeBetweenBurstOfPoiSon = DifficultyManager.Instance.GetTimeBetweenBurstOfPoiSon();
         if(isBeingWatered)
         {
@@ -82,18 +85,16 @@ public class OilPipeGameplay : MonoBehaviour
                 Explosion.enabled = true;
                 GetComponent<BoxCollider>().enabled = false;
                 Watered.Stop();
-                DestroyAfterTime(20f);
-                if (removedFromOilManager)
-                    return;
 
-                SpawnPowerUp();
-                removedFromOilManager=true;
+                OilPipeManager.Instance?.RemoveOilPipe(this);
+                removedFromOilManager = true;
+
                 audiosource.PlayOneShot(explosionClip);
+                SpawnPowerUp();
+                StartCoroutine(DestroyAfterTime(20f));
 
                 VibrationManager.Instance!.StopOilPipeBeingShoot();
                 VibrationManager.Instance!.PlayOilPipeDestructed();
-
-                OilPipeManager.Instance?.RemoveOilPipe(this);
             }
         }
     }
