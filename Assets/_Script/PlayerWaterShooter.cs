@@ -111,7 +111,7 @@ public class PlayerWaterShooter : MonoBehaviour
         playerController.moveSpeed = baseMovespeed;
         oilPipeGameplays.Clear();
         soundEffect.Stop();
-        Gamepad.current.SetMotorSpeeds(0f, 0f);
+        Gamepad.current?.SetMotorSpeeds(0f, 0f);
     }
 
     private void OnTriggerEnter(Collider other)
