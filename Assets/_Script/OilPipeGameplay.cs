@@ -143,7 +143,8 @@ public class OilPipeGameplay : MonoBehaviour
     public void WaterGunDisabled()
     {
         isBeingWatered = false;
-        Watered.Stop();
+        if(!Watered.IsDestroyed())
+            Watered.Stop();
     }
 
     private void OnTriggerExit(Collider other)

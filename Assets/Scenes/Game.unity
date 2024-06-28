@@ -979,7 +979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9222969192770034055, guid: f4e5240a2df601745b9b700a397834d7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3.999939
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1165,6 +1165,10 @@ PrefabInstance:
     - target: {fileID: 2078970245185655949, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
       propertyPath: WaterJetParameters.Array.data[5].TimeToDestroyPipe
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219346425270804424, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5768977114072674001, guid: db66fff3aff6f4140bdceebd10d577e4, type: 3}
       propertyPath: m_Name

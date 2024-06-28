@@ -124,6 +124,8 @@ public class PlayerWaterShooter : MonoBehaviour
 
     private void OnTriggerStay(Collider collider)
     {
+        waterGunParticleSystem.SetInt("level", currentWaterJetParameterIndex);
+
         if (collider.TryGetComponent(out Paintable paintableObject))
         {
             var collisionPoint = collider.ClosestPoint(visualTransform.position);
