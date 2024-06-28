@@ -28,6 +28,10 @@ namespace _Script
             float MIN_ROCKET_INTERVAL = 2f;
             float MIN_BUBBLES_INTERVAL = .5f;
 
+            if(Mathf.CeilToInt(timer) % 120 == 0&& Mathf.CeilToInt(lastFrame) % 120 != 0) {
+                RocketManager.Instance.NumberofRocketSpawned*=2;
+            }
+
             if (Mathf.CeilToInt(timer) % 15 == 0 && Mathf.CeilToInt(lastFrame) % 15 != 0)
             {
                 RocketManager.Instance.SpawnInterval =

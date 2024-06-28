@@ -1,0 +1,63 @@
+La description ainsi que le layout de la page sont trouvables a https://jojogelb.itch.io/monkeyta
+La video de demonstration est trouvable ici: https://youtu.be/u7GrOmPb9ac
+
+MonkeyTa
+Description:
+Monkeyta est un jeu dans lequel le joueur incarne un singe élu par son peuple pour répousser les humains venus exploiter les ressources de sa planète jusqu'ici préservée. Alors que les envahisseurs envoient sans relâche des fusées à la surface de la planète le joueur a la lourde responsabilité de détruire ces industries avant que la polution qu'elle génèrent ne se répendent sur la nature. S'en suit alors un combat sans relâche pour que le joueur parvienne à nettoyer la pollution et ainsi restaurer la nature verdoyante des forêts environnantes
+
+Condition de victoire:
+Il n'y a pas de condition de victoire, c'est un jeu arcade sans fin qui vous pousse à survivre le plus longtemps possible pour vous inscrire dans le scoreboard
+
+Controles: 
+WASD ou Left joystick pour se déplacer
+
+SPACE ou A pour jump
+
+Click souris gauche ou trigger RT pour tirer de l'eau
+
+Escape ou Bouton menu pour mettre en pause
+
+(Manette) Bouton Menu et B pour naviguer dans les menus
+
+Developpeurs:
+Équipe "Just A few Monkey"
+Jojo Gelb
+Nicolixx
+Guimhoff
+Fait main:
+Planette + génération procédurale
+
+Pipe oil
+
+Rocket (retouché)
+
+Tous les shaders
+
+Effet de particules (eau, explosion ..)
+
+Tous les UI
+
+Tous le code du jeu
+
+
+Crédits: 
+Assets player, arbres, skybox: UnityAssetsStore: Free Assets
+
+Sons: All:  OpenGameArt.org
+
+https://assetstore.unity.com/packages/3d/characters/animals/quirky-series-free-a...
+
+https://assetstore.unity.com/packages/3d/vegetation/trees/low-poly-tree-pack-578...
+
+https://assetstore.unity.com/packages/3d/environments/simple-sky-cartoon-assets-...
+
+https://opengameart.org/content/the-arcade-detective
+
+https://opengameart.org/content/single-and-multi-explosion
+
+https://opengameart.org/content/jet-engine-takeoff
+
+https://opengameart.org/content/sirens-and-alarm-noise
+
+Inspiration / Remerciement:
+https://github.com/mixandjam/Splatoon-Ink

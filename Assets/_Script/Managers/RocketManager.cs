@@ -14,8 +14,8 @@ public class RocketManager : Singleton<RocketManager>
 
 
     [HideInInspector] public float SpawnInterval;
-
-
+    public float NumberofRocketSpawned = 1;
+    private float counter = 0;
     
     private float EvaluateCurve(AnimationCurve curve, float position)
     {
@@ -28,11 +28,15 @@ public class RocketManager : Singleton<RocketManager>
     }
 
     private void SpawnRocket()
-    {
-        GameObject g = Instantiate(RocketPrefab,Vector3.zero, Random.rotation);
-        g.transform.position = g.transform.up * spawnRadius;
-        
-        g.GetComponent<Rocket>().started = true;
+    {   
+        while(counter < NumberofRocketSpawned) {
+            GameObject g = Instantiate(RocketPrefab,Vector3.zero, Random.rotation);
+            g.transform.position = g.transform.up * spawnRadius;
+            g.GetComponent<Rocket>().started = true;
+            counter++;
+        }
+
+        counter = 0;
 
         Invoke(nameof(SpawnRocket),SpawnInterval + SpawnInterval);
         

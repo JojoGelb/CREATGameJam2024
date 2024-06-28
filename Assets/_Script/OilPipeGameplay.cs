@@ -59,7 +59,7 @@ public class OilPipeGameplay : MonoBehaviour
     {
         if (removedFromOilManager) return;
         GameObject g = ObjectPooler.Instance.GetOrCreateGameObjectFromPool(ObjectPooler.PoolObject.PoisonBubble);
-        g.transform.parent = transform;
+        //g.transform.parent = transform;
         g.transform.localRotation = Quaternion.identity;
         g.transform.position = BubbleSpawnPosition.position;
         Vector3 force = new Vector3(Random.Range(minForceBubble.x, maxForceBubble.x), Random.Range(minForceBubble.y, maxForceBubble.y), Random.Range(minForceBubble.z, maxForceBubble.z));

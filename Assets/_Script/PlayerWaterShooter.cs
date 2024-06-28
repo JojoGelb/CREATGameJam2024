@@ -122,12 +122,15 @@ public class PlayerWaterShooter : MonoBehaviour
         }
     }
 
+    string level = "level";
+
     private void OnTriggerStay(Collider collider)
     {
-        waterGunParticleSystem.SetInt("level", currentWaterJetParameterIndex);
+        waterGunParticleSystem.SetInt(level, currentWaterJetParameterIndex);
 
         if (collider.TryGetComponent(out Paintable paintableObject))
         {
+            //Debug.Log(collider.gameObject.name);
             var collisionPoint = collider.ClosestPoint(visualTransform.position);
 
             float minRadius = WaterJetParameters[currentWaterJetParameterIndex].MinRadius;

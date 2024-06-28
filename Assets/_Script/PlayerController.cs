@@ -103,14 +103,14 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         if (!Physics.Raycast(transform.position + transform.up * 10,-transform.up, out hit,Mathf.Infinity ,1<<7 ))
         {
-            Debug.Log("Not found");
+            //Debug.Log("Not found");
             return new Color(0,0,0,0);
         }
 
 
         if(!hit.transform.TryGetComponent(out PollutionManager po))
         {
-            Debug.Log("Wrong collided: " + hit.transform.name);
+            //Debug.Log("Wrong collided: " + hit.transform.name);
             return Color.white;
         } else
         {
